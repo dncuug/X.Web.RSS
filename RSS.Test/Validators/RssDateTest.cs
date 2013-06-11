@@ -95,6 +95,20 @@ namespace RSS.Test.Validators
         }
 
         [TestMethod]
+        public void Ctor_ValidStringParameter_WithTimeZone_Ok()
+        {
+            // Arrange
+            String date = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.fK");
+
+            // Action
+            RssDate rssDate = new RssDate(date);
+
+            // Assert
+            Assert.AreEqual(date, rssDate.DateStringISO8601);
+        }
+
+
+        [TestMethod]
         public void Ctor_StringInFuture_Error()
         {
             // Arrange
