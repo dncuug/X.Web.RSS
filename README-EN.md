@@ -1,45 +1,40 @@
 # Simple RSS
 
-## 简介
+## Introduction
 
-使用该库，可以很容易地创建简单的RSS订阅和阅读RSS源。
+Easy to use library to create simple rss feeds and read foreign rss feeds.
 
-所有过程都基于XmlSerializer来完成的，可被用作如何使用XmlSerializer的一个例子 :)
+All processes are based on XmlSerializer and can be used as an example of how to use XmlSerializer :)
 
-## 例程
+## Usage example
 
-为了创建Rss，你需要填充`Rss`对象的几个必须属性，然后调用`RSSHelper.WriteRSS`方法获得你需要的任何Stream。
+To create rss feed you need to fill necessary fields in `Rss` object and call `RSSHelper.WriteRSS` to any Stream you wish.
 
-```
     MemoryStream ms = new MemoryStream();
     Rss rss = GetFullRSS();
     RSSHelper.WriteRSS(rss, ms);
     var result = Encoding.UTF8.GetString(ms.GetBuffer()).Trim('\0');
     Assert.AreEqual(GetFullRSSText(), result);
-```
 
-为了读取Rss，你需要获取包含rss的stream，然后调用`RSSHelper.ReadRSS`方法
 
-```
+To read foreign rss feed you need to get stream with rss data and call `RSSHelper.ReadRSS`
+
     var request = WebRequest.Create("http://bash.org.ru/rss/");
     var response = request.GetResponse();
     var stream = response.GetResponseStream();
     Rss rss = RSSHelper.ReadRSS(stream);
     Assert.AreEqual("Bash.Org.Ru", rss.Channel.Title);
-```
 
-### RSS对象创建例程
+### RSS object creating example
 
-完整的rss对象如下：
+Complete rss object will looks like this:
 
-```
     return new Rss
             {
                 Channel =
                     new RssChannel
                     {
-                        AtomLink =
-                            new RssLink { Href = new RssUrl("http://atomlink.com"), Rel = Rel.self, Type = "text/plain" },
+                        AtomLink = new RssLink { Href = new RssUrl("http://atomlink.com"), Rel = Rel.self, Type = "text/plain" },
                         Category = "category",
                         Cloud =
                             new RssCloud
@@ -47,7 +42,7 @@
                                 Domain = "domain",
                                 Path = "path",
                                 Port = 1234,
-                                Protocol = Protocol.XmlRpc,
+                                Protocol = Protocol.xmlrpc,
                                 RegisterProcedure = "registerProcedure"
                             },
                         Copyright = "copyrignt (c)",
@@ -83,35 +78,35 @@
                         WebMaster = new RssEmail("webmaster@mail.ru (webmaster)"),
                         Item =
                             new List<RssItem>
-                            {
-                                new RssItem
-                                {
-                                    Author = new RssEmail("item.author@mail.ru (author)"),
-                                    Category =
-                                        new RssCategory
                                         {
-                                            Domain = "category domain value",
-                                            Text = "category text value"
-                                        },
-                                    Comments = new RssUrl("http://rss.item.comment.url.com"),
-                                    Description = "item description",
-                                    Enclosure =
-                                        new RssEnclosure
-                                        {
-                                            Length = 1234,
-                                            Type = "text/plain",
-                                            Url = new RssUrl("http://rss.item.enclosure.type.url.com")
-                                        },
-                                    Link = new RssUrl("http://rss.item.link.url.com"),
-                                    PubDate = new DateTime(2011, 7, 17, 15, 55, 41),
-                                    Title = "item title",
-                                    Guid = new RssGuid {IsPermaLink = false, Value = "guid value"},
-                                    Source = new RssSource {Url = new RssUrl("http://rss.item.source.url.com")}
-                                }
-                            }
+                                            new RssItem
+                                                {
+                                                    Author = new RssEmail("item.author@mail.ru (author)"),
+                                                    Category =
+                                                        new RssCategory
+                                                            {
+                                                                Domain = "category domain value", 
+                                                                Text = "category text value"
+                                                            },
+                                                    Comments = new RssUrl("http://rss.item.comment.url.com"),
+                                                    Description = "item description",
+                                                    Enclosure =
+                                                        new RssEnclosure
+                                                            {
+                                                                Length = 1234,
+                                                                Type = "text/plain",
+                                                                Url = new RssUrl("http://rss.item.enclosure.type.url.com")
+                                                            },
+                                                    Link = new RssUrl("http://rss.item.link.url.com"),
+                                                    PubDate = new DateTime(2011, 7, 17, 15, 55, 41),
+                                                    Title = "item title",
+                                                    Guid = new RssGuid { IsPermaLink = false, Value = "guid value" },
+                                                    Source = new RssSource { Url = new RssUrl("http://rss.item.source.url.com") }
+                                                }
+                                        }
                     }
             };
-```
+
 
 ## Features
 
