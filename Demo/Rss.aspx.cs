@@ -19,6 +19,7 @@ namespace Demo
             MemoryStream ms = new MemoryStream();
             Rss rss = GetFullRSS();
             RSSHelper.WriteRSS(rss, ms);
+            ms = RSSHelper.RemoveEmptyElement(ms);
             var result = Encoding.UTF8.GetString(ms.GetBuffer()).Trim('\0');
             Response.Write(result);
         }
@@ -31,7 +32,7 @@ namespace Demo
                     new RssChannel
                     {
                         AtomLink =
-                            new RssLink {Href = new RssUrl("http://atomlink.com"), Rel = Rel.self, Type = "text/plain"},
+                            new RssLink {Href = new RssUrl("http://atomlink.com"), Rel = Rel.Self, Type = "text/plain"},
                         Category = "category",
                         Cloud =
                             new RssCloud
@@ -60,7 +61,7 @@ namespace Demo
                         ManagingEditor = new RssEmail("managingEditor@mail.com (manager)"),
                         PubDate = new DateTime(2011, 7, 17, 15, 55, 41),
                         Rating = "rating",
-                        SkipDays = new List<Day> {Day.Thursday, Day.Wednesday},
+//                        SkipDays = new List<Day> {Day.Thursday, Day.Wednesday},
                         SkipHours = new List<Hour> {new Hour(22), new Hour(15), new Hour(4)},
                         TextInput =
                             new RssTextInput

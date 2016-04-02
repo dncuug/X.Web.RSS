@@ -1,8 +1,12 @@
+using System.Xml.Serialization;
+
 namespace RSS.Enumerators
 {
     public enum Rel
     {
-        self,
-        alternate
+        [XmlEnum("self")]
+        Self,
+        [XmlEnum("alternate")]
+        Alternate
     }
 }

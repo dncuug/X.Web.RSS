@@ -19,7 +19,7 @@
         public RssLink()
         {
             this.Type = "application/rss+xml";
-            this.Rel = Rel.self;
+            this.Rel = Rel.Self;
         }
 
         #endregion

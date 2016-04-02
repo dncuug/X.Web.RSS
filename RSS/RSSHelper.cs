@@ -1,4 +1,6 @@
-﻿namespace RSS
+﻿using System.Xml;
+
+namespace RSS
 {
     #region Using Directives
 
@@ -33,6 +35,39 @@
 
             XmlSerializer ser = new XmlSerializer(typeof(Rss));
             return (Rss)ser.Deserialize(source);
+        }
+
+        public static MemoryStream RemoveEmptyElement(Stream stream)
+        {
+            MemoryStream newStream = new MemoryStream();
+            stream.Position = 0;
+            using (var reader = XmlReader.Create(stream))
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.Load(reader);
+                XmlNodeList nodes = doc.ChildNodes;
+                RemoveEmptyNode(doc.FirstChild, nodes);
+                doc.Save(newStream);
+            }
+            return newStream;
+        }
+
+        private static void RemoveEmptyNode(XmlNode parentNode, XmlNodeList childNodes)
+        {
+            foreach (XmlNode node in childNodes)
+            {
+                if (node.HasChildNodes)
+                {
+                    RemoveEmptyNode(node, node.ChildNodes);
+                }
+                else
+                {
+                    if (!node.HasChildNodes && node.Attributes?.Count <= 0 && string.IsNullOrEmpty(node.InnerText))
+                    {
+                        parentNode.RemoveChild(node);
+                    }
+                }
+            }
         }
 
         #endregion

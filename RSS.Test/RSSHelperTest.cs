@@ -83,7 +83,7 @@
                     new RssChannel
                     {
                         AtomLink =
-                            new RssLink { Href = new RssUrl("http://atomlink.com"), Rel = Rel.self, Type = "text/plain" },
+                            new RssLink { Href = new RssUrl("http://atomlink.com"), Rel = Rel.Self, Type = "text/plain" },
                         Category = "category",
                         Cloud =
                             new RssCloud
