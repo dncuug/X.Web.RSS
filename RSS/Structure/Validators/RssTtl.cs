@@ -13,9 +13,9 @@ namespace RSS.Structure.Validators
     {
         #region Constants and Fields
 
-        private int ttl;
+        private int _ttl;
 
-        private string ttlString;
+        private string _ttlString;
 
         #endregion
 
@@ -44,7 +44,7 @@ namespace RSS.Structure.Validators
         {
             get
             {
-                return this.ttl;
+                return this._ttl;
             }
 
             set
@@ -56,13 +56,13 @@ namespace RSS.Structure.Validators
 
                 if (value != 0)
                 {
-                    this.ttl = value;
-                    this.ttlString = this.ttl.ToString();
+                    this._ttl = value;
+                    this._ttlString = this._ttl.ToString();
                 }
                 else
                 {
-                    this.ttl = 0;
-                    this.ttlString = null;
+                    this._ttl = 0;
+                    this._ttlString = null;
                 }
             }
         }
@@ -72,7 +72,7 @@ namespace RSS.Structure.Validators
         {
             get
             {
-                return this.ttlString;
+                return this._ttlString;
             }
 
             set

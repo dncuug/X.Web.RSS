@@ -14,8 +14,8 @@ namespace RSS.Structure.Validators
     {
         #region Constants and Fields
 
-        private string dateString;
-        private DateTime? date;
+        private string _dateString;
+        private DateTime? _date;
 
         #endregion
 
@@ -44,7 +44,7 @@ namespace RSS.Structure.Validators
         {
             get
             {
-                return this.dateString;
+                return this._dateString;
             }
 
             set
@@ -71,7 +71,7 @@ namespace RSS.Structure.Validators
         {
             get
             {
-                return this.date;
+                return this._date;
             }
 
             set
@@ -83,13 +83,13 @@ namespace RSS.Structure.Validators
                         throw new RSSParameterException("newDate", value);
                     }
 
-                    this.date = value;
-                    this.dateString = this.date.Value.ToString("R");
+                    this._date = value;
+                    this._dateString = this._date.Value.ToString("R");
                 }
                 else
                 {
-                    this.date = null;
-                    this.dateString = null;
+                    this._date = null;
+                    this._dateString = null;
                 }
             }
         }

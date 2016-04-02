@@ -16,9 +16,9 @@
     {
         #region Constants and Fields
 
-        private int height = 31;
+        private int _height = 31;
 
-        private int width = 88;
+        private int _width = 88;
 
         #endregion
 
@@ -39,17 +39,17 @@
         {
             get
             {
-                return this.height;
+                return this._height;
             }
 
             set
             {
-                if (this.height > 400)
+                if (this._height > 400)
                 {
-                    throw new RSSParameterException("height", this.height);
+                    throw new RSSParameterException("height", this._height);
                 }
 
-                this.height = value;
+                this._height = value;
             }
         }
 
@@ -81,17 +81,17 @@
         {
             get
             {
-                return this.width;
+                return this._width;
             }
 
             set
             {
-                if (this.width > 144)
+                if (this._width > 144)
                 {
-                    throw new RSSParameterException("width", this.width);
+                    throw new RSSParameterException("width", this._width);
                 }
 
-                this.width = value;
+                this._width = value;
             }
         }
 

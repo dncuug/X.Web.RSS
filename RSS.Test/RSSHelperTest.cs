@@ -60,20 +60,20 @@
             Assert.AreEqual("long description", rss.Channel.Description);
         }
 
-/*
-        [TestMethod]
-        public void Test()
-        {
-            var request = WebRequest.Create("http://bash.org.ru/rss/");
-            var response = request.GetResponse();
-            var stream = response.GetResponseStream();
+        /*
+                [TestMethod]
+                public void Test()
+                {
+                    var request = WebRequest.Create("http://bash.org.ru/rss/");
+                    var response = request.GetResponse();
+                    var stream = response.GetResponseStream();
 
-            Rss rss = RSSHelper.ReadRSS(stream);
+                    Rss rss = RSSHelper.ReadRSS(stream);
 
-            Assert.AreEqual("Bash.Org.Ru", rss.Channel.Title);
-            Assert.AreEqual("Цитатник Рунета", rss.Channel.Description);
-        }
-*/
+                    Assert.AreEqual("Bash.Org.Ru", rss.Channel.Title);
+                    Assert.AreEqual("Цитатник Рунета", rss.Channel.Description);
+                }
+        */
 
         private static Rss GetFullRSS()
         {
@@ -82,7 +82,8 @@
                 Channel =
                     new RssChannel
                     {
-                        AtomLink = new RssLink { Href = new RssUrl("http://atomlink.com"), Rel = Rel.self, Type = "text/plain" },
+                        AtomLink =
+                            new RssLink { Href = new RssUrl("http://atomlink.com"), Rel = Rel.self, Type = "text/plain" },
                         Category = "category",
                         Cloud =
                             new RssCloud
@@ -90,7 +91,7 @@
                                 Domain = "domain",
                                 Path = "path",
                                 Port = 1234,
-                                Protocol = Protocol.xmlrpc,
+                                Protocol = Protocol.XmlRpc,
                                 RegisterProcedure = "registerProcedure"
                             },
                         Copyright = "copyrignt (c)",
@@ -126,32 +127,32 @@
                         WebMaster = new RssEmail("webmaster@mail.ru (webmaster)"),
                         Item =
                             new List<RssItem>
+                            {
+                                new RssItem
+                                {
+                                    Author = new RssEmail("item.author@mail.ru (author)"),
+                                    Category =
+                                        new RssCategory
                                         {
-                                            new RssItem
-                                                {
-                                                    Author = new RssEmail("item.author@mail.ru (author)"),
-                                                    Category =
-                                                        new RssCategory
-                                                            {
-                                                                Domain = "category domain value", 
-                                                                Text = "category text value"
-                                                            },
-                                                    Comments = new RssUrl("http://rss.item.comment.url.com"),
-                                                    Description = "item description",
-                                                    Enclosure =
-                                                        new RssEnclosure
-                                                            {
-                                                                Length = 1234,
-                                                                Type = "text/plain",
-                                                                Url = new RssUrl("http://rss.item.enclosure.type.url.com")
-                                                            },
-                                                    Link = new RssUrl("http://rss.item.link.url.com"),
-                                                    PubDate = new DateTime(2011, 7, 17, 15, 55, 41),
-                                                    Title = "item title",
-                                                    Guid = new RssGuid { IsPermaLink = false, Value = "guid value" },
-                                                    Source = new RssSource { Url = new RssUrl("http://rss.item.source.url.com") }
-                                                }
-                                        }
+                                            Domain = "category domain value",
+                                            Text = "category text value"
+                                        },
+                                    Comments = new RssUrl("http://rss.item.comment.url.com"),
+                                    Description = "item description",
+                                    Enclosure =
+                                        new RssEnclosure
+                                        {
+                                            Length = 1234,
+                                            Type = "text/plain",
+                                            Url = new RssUrl("http://rss.item.enclosure.type.url.com")
+                                        },
+                                    Link = new RssUrl("http://rss.item.link.url.com"),
+                                    PubDate = new DateTime(2011, 7, 17, 15, 55, 41),
+                                    Title = "item title",
+                                    Guid = new RssGuid {IsPermaLink = false, Value = "guid value"},
+                                    Source = new RssSource {Url = new RssUrl("http://rss.item.source.url.com")}
+                                }
+                            }
                     }
             };
         }
@@ -160,7 +161,7 @@
         {
             return
 @"<?xml version=""1.0""?>
-<rss xmlns:content=""http://purl.org/rss/1.0/modules/content/"" xmlns:atom=""http://www.w3.org/2005/Atom"" xmlns:dc=""http://purl.org/dc/elements/1.1/"" version=""2.0"">
+<rss xmlns:dc=""http://purl.org/dc/elements/1.1/"" xmlns:content=""http://purl.org/rss/1.0/modules/content/"" xmlns:atom=""http://www.w3.org/2005/Atom"" version=""2.0"">
   <channel>
     <atom:link rel=""self"" type=""text/plain"" href=""http://atomlink.com/"" />
     <category>category</category>

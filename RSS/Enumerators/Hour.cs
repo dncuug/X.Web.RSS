@@ -12,7 +12,7 @@
     {
         #region Constants and Fields
 
-        private byte value;
+        private byte _value;
 
         #endregion
 
@@ -24,7 +24,7 @@
 
         public Hour(byte newValue)
         {
-            this.value = newValue;
+            this._value = newValue;
         }
 
         #endregion
@@ -36,7 +36,7 @@
         {
             get
             {
-                return this.value;
+                return this._value;
             }
 
             set
@@ -46,7 +46,7 @@
                     throw new RSSParameterException("hour", value);
                 }
 
-                this.value = value;
+                this._value = value;
             }
         }
 

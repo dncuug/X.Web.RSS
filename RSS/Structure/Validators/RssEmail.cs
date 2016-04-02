@@ -13,12 +13,12 @@ namespace RSS.Structure.Validators
     {
         #region Constants and Fields
 
-        private readonly Regex r =
+        private readonly Regex _emailReg =
             new Regex(
                 "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
                 RegexOptions.IgnoreCase);
 
-        private string email;
+        private string _email;
 
         #endregion
 
@@ -42,17 +42,17 @@ namespace RSS.Structure.Validators
         {
             get
             {
-                return this.email;
+                return this._email;
             }
 
             set
             {
-                if (value != null && !this.r.IsMatch(value))
+                if (value != null && !_emailReg.IsMatch(value))
                 {
                     throw new RSSParameterException("email", value);
                 }
 
-                this.email = value;
+                this._email = value;
             }
         }
 

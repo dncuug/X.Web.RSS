@@ -13,9 +13,9 @@
     {
         #region Constants and Fields
 
-        private Uri url;
+        private Uri _url;
 
-        private string urlString;
+        private string _urlString;
 
         #endregion
 
@@ -44,19 +44,19 @@
         {
             get
             {
-                return this.url;
+                return this._url;
             }
 
             set
             {
-                this.url = value;
-                if (this.url == null)
+                this._url = value;
+                if (this._url == null)
                 {
-                    this.urlString = null;
+                    this._urlString = null;
                 }
                 else
                 {
-                    this.urlString = this.url.AbsoluteUri;
+                    this._urlString = this._url.AbsoluteUri;
                 }
             }
         }
@@ -66,7 +66,7 @@
         {
             get
             {
-                return this.urlString;
+                return this._urlString;
             }
 
             set

@@ -253,7 +253,7 @@
             @"The RSS specification actively discourages publishers from using the textInput element, calling its purpose ""something of a mystery"" and stating that ""most aggregators ignore it."" Fewer than one percent of surveyed RSS feeds included the element. The only aggregators known to support it are BottomFeeder and Liferea.
  For this reason, publishers should not expect it to be supported in most aggregators."
             )]*/
-            public RssTextInput TextInput { get; set; }
+        public RssTextInput TextInput { get; set; }
 
         /// <summary>
         ///   Gets or sets the name of the channel. It's how people refer to your service. 

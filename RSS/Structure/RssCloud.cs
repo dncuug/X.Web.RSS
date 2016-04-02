@@ -47,13 +47,13 @@
         public int Port { get; set; }
 
         /// <summary>
-        ///   Gets or sets the string "xml-rpc" if the client employs XML-RPC or "soap" for SOAP
+        ///   Gets or sets the string "xml-rpc" if the client employs XML-RPC or "Soap" for SOAP
         /// </summary>
         /// <example>
         ///   xml-rpc
         /// </example>
         /// <example>
-        ///   soap
+        ///   Soap
         /// </example>
         [XmlAttribute("protocol")]
         public Protocol Protocol { get; set; }

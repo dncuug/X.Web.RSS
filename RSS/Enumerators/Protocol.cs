@@ -1,9 +1,12 @@
-﻿namespace RSS.Enumerators
+﻿using System.Xml.Serialization;
+
+namespace RSS.Enumerators
 {
-    // ToDo: rename elements and chect xml-rpc
     public enum Protocol
     {
-        soap, // "soap",
-        xmlrpc // "xml-rpc"
+        [XmlEnum("soap")]
+        Soap, // "soap",
+        [XmlEnum("xmlrpc")]
+        XmlRpc // "xml-rpc"
     }
 }
