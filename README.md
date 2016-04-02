@@ -1,6 +1,6 @@
-# Simple RSS
+﻿# Simple RSS
 
-## 简介
+## 简介 (English)[README-EN.md]
 
 使用该库，可以很容易地创建简单的RSS订阅和阅读RSS源。
 
