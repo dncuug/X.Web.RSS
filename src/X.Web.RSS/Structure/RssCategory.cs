@@ -1,17 +1,18 @@
 ﻿using System.Xml.Serialization;
 
-namespace X.Web.RSS.Structure
+namespace X.Web.RSS.Structure;
+
+public class RssCategory
 {
-    public class RssCategory
+    public RssCategory()
     {
-        #region Properties
-
-        [XmlAttribute("domain")]
-        public string Domain { get; set; }
-
-        [XmlText]
-        public string Text { get; set; }
-
-        #endregion
+        Domain = "";
+        Text = "";
     }
+
+    [XmlAttribute("domain")]
+    public string Domain { get; set; }
+
+    [XmlText]
+    public string Text { get; set; }
 }

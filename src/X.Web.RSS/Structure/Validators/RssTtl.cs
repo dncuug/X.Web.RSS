@@ -2,93 +2,83 @@ using System;
 using System.Xml.Serialization;
 using X.Web.RSS.Exceptions;
 
-namespace X.Web.RSS.Structure.Validators
+namespace X.Web.RSS.Structure.Validators;
+
+public class RssTtl
 {
-    public class RssTtl
+
+    private int _ttl;
+
+    private string _ttlString;
+
+
+    public RssTtl()
     {
-        #region Constants and Fields
+    }
 
-        private int ttl;
+    public RssTtl(string ttl)
+    {
+        TTLString = ttl;
+    }
 
-        private string ttlString;
+    public RssTtl(int ttl)
+    {
+        TTL = ttl;
+    }
 
-        #endregion
 
-        #region Constructors and Destructors
-
-        public RssTtl()
+    [XmlIgnore]
+    public int TTL
+    {
+        get
         {
+            return _ttl;
         }
-
-        public RssTtl(string ttl)
+        set
         {
-            this.TTLString = ttl;
-        }
-
-        public RssTtl(int ttl)
-        {
-            this.TTL = ttl;
-        }
-
-        #endregion
-
-        #region Properties
-
-        [XmlIgnore]
-        public int TTL
-        {
-            get
+            if (value < 0)
             {
-                return this.ttl;
+                throw new RSSParameterException($"{this.GetType()}.ttl", value);
             }
 
-            set
+            if (value != 0)
             {
-                if (value < 0)
-                {
-                    throw new RSSParameterException(string.Format("{0}.ttl", this.GetType()), value);
-                }
-
-                if (value != 0)
-                {
-                    this.ttl = value;
-                    this.ttlString = this.ttl.ToString();
-                }
-                else
-                {
-                    this.ttl = 0;
-                    this.ttlString = null;
-                }
+                _ttl = value;
+                _ttlString = _ttl.ToString();
+            }
+            else
+            {
+                _ttl = 0;
+                _ttlString = null;
             }
         }
+    }
 
-        [XmlText]
-        public string TTLString
+    [XmlText]
+    public string TTLString
+    {
+        get
         {
-            get
-            {
-                return this.ttlString;
-            }
-
-            set
-            {
-                int parseTtl = 0;
-                if (value != null)
-                {
-                    try
-                    {
-                        parseTtl = int.Parse(value);
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new RSSParameterException("ttl", value, ex);
-                    }
-                }
-
-                this.TTL = parseTtl;
-            }
+            return _ttlString;
         }
 
-        #endregion
+        set
+        {
+            int parseTtl = 0;
+            
+            if (value != null)
+            {
+                try
+                {
+                    parseTtl = int.Parse(value);
+                }
+                catch (Exception ex)
+                {
+                    throw new RSSParameterException("ttl", value, ex);
+                }
+            }
+
+            TTL = parseTtl;
+        }
     }
 }

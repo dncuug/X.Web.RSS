@@ -1,9 +1,11 @@
-﻿namespace X.Web.RSS.Enumerators
+﻿using JetBrains.Annotations;
+
+namespace X.Web.RSS.Enumerators;
+
+// ToDo: rename elements and check xml-rpc
+[PublicAPI]
+public enum Protocol
 {
-    // ToDo: rename elements and chect xml-rpc
-    public enum Protocol
-    {
-        soap, // "soap",
-        xmlrpc // "xml-rpc"
-    }
+    soap, // "soap",
+    xmlrpc // "xml-rpc"
 }

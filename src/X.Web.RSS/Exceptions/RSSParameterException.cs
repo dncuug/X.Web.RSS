@@ -1,45 +1,37 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using JetBrains.Annotations;
 
-namespace X.Web.RSS.Exceptions
+namespace X.Web.RSS.Exceptions;
+
+public class RSSParameterException : Exception
 {
-    public class RSSParameterException : Exception
+    private const string MessageText = "RSSParameterException field '{0}', value '{1}'";
+
+    public RSSParameterException(string field, object value)
+        : base(string.Format(MessageText, field, value))
     {
-        private readonly string field;
-
-        private readonly object value;
-
-        private const string MessageText = "RSSParameterException field '{0}', value '{1}'";
-
-        public RSSParameterException(string field, object value)
-            : base(string.Format(MessageText, field, value))
-        {
-            this.field = field;
-            this.value = value;
-        }
-
-        public RSSParameterException(string field, object value, Exception innerException)
-            : base(string.Format(MessageText, field, value), innerException)
-        {
-            this.field = field;
-            this.value = value;
-        }
-
-        protected RSSParameterException(SerializationInfo info, StreamingContext context, string field, object value)
-        //: base(info, context)
-        {
-            this.field = field;
-            this.value = value;
-        }
-
-        public string Field
-        {
-            get { return this.field; }
-        }
-
-        public object Value
-        {
-            get { return this.value; }
-        }
+        Field = field;
+        Value = value;
     }
+
+    public RSSParameterException(string field, object value, Exception innerException)
+        : base(string.Format(MessageText, field, value), innerException)
+    {
+        Field = field;
+        Value = value;
+    }
+
+    protected RSSParameterException(SerializationInfo info, StreamingContext context, string field, object value)
+        : base(info, context)
+    {
+        Field = field;
+        Value = value;
+    }
+
+    [PublicAPI]
+    public string Field { get; }
+
+    [PublicAPI]
+    public object Value { get; }
 }

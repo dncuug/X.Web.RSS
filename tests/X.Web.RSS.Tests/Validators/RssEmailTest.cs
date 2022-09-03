@@ -1,49 +1,47 @@
-using X.Web.RSS.Exceptions;
 using X.Web.RSS.Structure.Validators;
 using Xunit;
 
-namespace X.Web.RSS.Tests.Validators
+namespace X.Web.RSS.Tests.Validators;
+
+public class RssEmailTest
 {
-    public class RssEmailTest
+    [Fact]
+    public void Ctor_ValidEmailParameter_Ok()
     {
-        [Fact]
-        public void Ctor_ValidEmailParameter_Ok()
-        {
-            // Arrange
-            const string Email = "valid@mail.ru";
+        // Arrange
+        const string Email = "valid@mail.ru";
 
-            // Action
-            RssEmail rssEmail = new RssEmail(Email);
+        // Action
+        RssEmail rssEmail = new RssEmail(Email);
 
-            // Assert
-            Assert.Equal(Email, rssEmail.Email);
-        }
+        // Assert
+        Assert.Equal(Email, rssEmail.Email);
+    }
         
-        [Fact]
-        public void SetEmail_ValidDateParameter_Ok()
-        {
-            // Arrange
-            RssEmail rssEmail = new RssEmail();
-            const string Email = "valid@mail.ru";
+    [Fact]
+    public void SetEmail_ValidDateParameter_Ok()
+    {
+        // Arrange
+        RssEmail rssEmail = new RssEmail();
+        const string Email = "valid@mail.ru";
 
-            // Action
-            rssEmail.Email = Email;
+        // Action
+        rssEmail.Email = Email;
 
-            // Assert
-            Assert.Equal(Email, rssEmail.Email);
-        }
+        // Assert
+        Assert.Equal(Email, rssEmail.Email);
+    }
 
-        [Fact]
-        public void SetString_Null_StringNull()
-        {
-            // Arrange
-            RssEmail rssEmail = new RssEmail();
+    [Fact]
+    public void SetString_Null_StringNull()
+    {
+        // Arrange
+        RssEmail rssEmail = new RssEmail();
 
-            // Action
-            rssEmail.Email = null;
+        // Action
+        rssEmail.Email = null;
 
-            // Assert
-            Assert.Equal(null, rssEmail.Email);
-        }
+        // Assert
+        Assert.Equal(null, rssEmail.Email);
     }
 }

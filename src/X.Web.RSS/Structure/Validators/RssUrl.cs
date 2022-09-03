@@ -2,87 +2,74 @@
 using System.Xml.Serialization;
 using X.Web.RSS.Exceptions;
 
-namespace X.Web.RSS.Structure.Validators
+namespace X.Web.RSS.Structure.Validators;
+
+public class RssUrl
 {
-    public class RssUrl
+    private Uri _url;
+
+    private string _urlString;
+
+    public RssUrl()
     {
-        #region Constants and Fields
+    }
 
-        private Uri url;
+    public RssUrl(string newUrl)
+    {
+        UrlString = newUrl;
+    }
 
-        private string urlString;
+    public RssUrl(Uri newUrl)
+    {
+        Url = newUrl;
+    }
 
-        #endregion
-
-        #region Constructors and Destructors
-
-        public RssUrl()
+    [XmlIgnore]
+    public Uri Url
+    {
+        get
         {
+            return _url;
         }
-
-        public RssUrl(string newUrl)
+        set
         {
-            this.UrlString = newUrl;
-        }
-
-        public RssUrl(Uri newUrl)
-        {
-            this.Url = newUrl;
-        }
-
-        #endregion
-
-        #region Properties
-
-        [XmlIgnore]
-        public Uri Url
-        {
-            get
+            _url = value;
+            
+            if (_url == null)
             {
-                return this.url;
+                _urlString = null;
             }
-
-            set
+            else
             {
-                this.url = value;
-                if (this.url == null)
+                _urlString = _url.AbsoluteUri;
+            }
+        }
+    }
+
+    [XmlText]
+    public string UrlString
+    {
+        get
+        {
+            return _urlString;
+        }
+        set
+        {
+            Uri parseUrl = null;
+            
+            if (value != null)
+            {
+                try
                 {
-                    this.urlString = null;
+                    parseUrl = new Uri(value, UriKind.Absolute);
                 }
-                else
+                catch (Exception ex)
                 {
-                    this.urlString = this.url.AbsoluteUri;
+                    throw new RSSParameterException("url", value, ex);
                 }
             }
+
+            Url = parseUrl;
         }
-
-        [XmlText]
-        public string UrlString
-        {
-            get
-            {
-                return this.urlString;
-            }
-
-            set
-            {
-                Uri parseUrl = null;
-                if (value != null)
-                {
-                    try
-                    {
-                        parseUrl = new Uri(value, UriKind.Absolute);
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new RSSParameterException("url", value, ex);
-                    }
-                }
-
-                this.Url = parseUrl;
-            }
-        }
-
-        #endregion
     }
 }
