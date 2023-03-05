@@ -16,10 +16,11 @@ All processes are based on XmlSerializer and can be used as an example of how to
 ## Usage example
 To read foreign rss feed you need to get stream with rss data and call `RSSHelper.ReadRSS`
 
-    var request = WebRequest.Create("http://example.com/rss/");
+    var request = WebRequest.Create("http://example.org/rss/");
     var response = request.GetResponse();
     var stream = response.GetResponseStream();
-    var rss = RssDocument.Load(stream);
+    Rss rss = RSSHelper.ReadRSS(stream);
+    Assert.AreEqual("Example", rss.Channel.Title);
 
 ### RSS object creating example
 
