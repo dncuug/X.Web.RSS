@@ -10,7 +10,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{04A264AA-7673-4212-BA17-41E6D01500FD}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		LICENSE = LICENSE
+		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{738DC914-F2F1-47DA-B96F-80F19ECA01C0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0C7B1C4A-61AE-4F43-96F8-3CD6A5774C9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,5 +41,9 @@ Global
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = cs-rss.vsmdi
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{301677B9-1586-4043-90C3-52A164230723} = {738DC914-F2F1-47DA-B96F-80F19ECA01C0}
+		{100A2EBB-A674-4CBB-AA97-83811397C676} = {0C7B1C4A-61AE-4F43-96F8-3CD6A5774C9E}
 	EndGlobalSection
 EndGlobal
