@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Version>2.4.0</Version>
+    <Version>2.5.0</Version>
     <VersionSuffix>beta</VersionSuffix>
     <Description>X.Web.RSS allow quickly and easily generate RSS feeds.</Description>
     <Copyright>Andrew Gubskiy</Copyright>
@@ -17,6 +17,10 @@
     <Nullable>enable</Nullable>
     <PackageTags>rss, xml</PackageTags>
     <TargetFrameworks>net6.0;net7.0;netstandard2.0;netstandard2.1</TargetFrameworks>
+    <Title>X.Web.RSS</Title>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/dncuug/X.Web.RSS/master/README.md</PackageLicenseUrl>
+    <AssemblyVersion>2.5.0.0</AssemblyVersion>
+    <FileVersion>2.5.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
