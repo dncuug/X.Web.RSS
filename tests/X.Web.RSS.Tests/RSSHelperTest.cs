@@ -22,9 +22,33 @@ public class RSSHelperTest
         var handler = new RssStreamHandler();
         handler.WriteToStream(rss, ms);
         ms.Position = 0;
-        IRssDocument newRss = handler.ReadFromStream(ms);
+        var newRss = handler.ReadFromStream(ms);
 
         Assert.Equal(rss.Channel.Description, newRss.Channel.Description);
+    }
+    
+    [Fact]
+    public void CheckSerialization()
+    {
+        IRssSerializer serializer = new RssSerializer();
+        
+        var rss = GetFullRss();
+        var xml = serializer.Serialize(rss);
+
+        Assert.NotEmpty(xml);
+    }
+
+    [Fact]
+    public void TestSerialization()
+    {
+        IRssSerializer serializer = new RssSerializer();
+        
+        var xml = GetFullRssText();
+        var rss = serializer.Deserialize(xml);
+
+        Assert.NotNull(rss);
+        Assert.Equal("channel title", rss.Channel.Title);
+        Assert.Equal("long description", rss.Channel.Description);
     }
 
     [Fact]
