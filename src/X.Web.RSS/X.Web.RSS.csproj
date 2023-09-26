@@ -5,9 +5,9 @@
     <VersionSuffix>beta</VersionSuffix>
     <Description>X.Web.RSS allow quickly and easily generate RSS feeds.</Description>
     <Copyright>Andrew Gubskiy</Copyright>
-    <PackageProjectUrl>https://github.com/ernado-x/X.Web.RSS</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/dncuug/X.Web.RSS</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/ernado-x/X.Web.RSS</RepositoryUrl>
+    <RepositoryUrl>https://github.com/dncuug/X.Web.RSS</RepositoryUrl>
     <PackageIconUrl>https://ru.gravatar.com/userimage/8071071/f2dc08ee7e4016451f64a7ae9cffd110.png?size=200</PackageIconUrl>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>xwebrss</PackageId>
