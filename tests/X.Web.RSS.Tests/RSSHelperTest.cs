@@ -19,9 +19,10 @@ public class RSSHelperTest
         var ms = new MemoryStream();
         var rss = GetFullRss();
 
-        RssDocument.WriteRSS(rss, ms);
+        var handler = new RssStreamHandler();
+        handler.WriteToStream(rss, ms);
         ms.Position = 0;
-        var newRss = RssDocument.Load(ms);
+        IRssDocument newRss = handler.ReadFromStream(ms);
 
         Assert.Equal(rss.Channel.Description, newRss.Channel.Description);
     }
@@ -29,12 +30,14 @@ public class RSSHelperTest
     [Fact]
     public void Read_External_Ok()
     {
-        var ms = new MemoryStream();
+        var stream = new MemoryStream();
         var array = Encoding.UTF8.GetBytes(GetPartRssText());
-        ms.Write(array, 0, array.Length);
-        ms.Position = 0;
+        stream.Write(array, 0, array.Length);
+        stream.Position = 0;
 
-        var rss = RssDocument.Load(ms);
+        var handler = new RssStreamHandler();
+        var rss = handler.ReadFromStream(stream);
+        
         Assert.Equal("channel title", rss.Channel.Title);
         Assert.Equal("long description", rss.Channel.Description);
     }
@@ -42,14 +45,15 @@ public class RSSHelperTest
     [Fact]
     public void Test()
     {
-        var request = WebRequest.Create("https://news.microsoft.com/feed/");
+        var request = WebRequest.Create("http://rss.cnn.com/rss/edition.rss");
         var response = request.GetResponse();
         var stream = response.GetResponseStream();
 
-        var rss = RssDocument.Load(stream);
-
-        Assert.Equal("Stories", rss.Channel.Title);
-        Assert.Equal("Microsoft news, features, events, and press materials", rss.Channel.Description);
+        var handler = new RssStreamHandler();
+        var rss = handler.ReadFromStream(stream);
+        
+        Assert.Equal("CNN.com - RSS Channel - App International Edition", rss.Channel.Title);
+        Assert.Equal("CNN.com delivers up-to-the-minute news and information on the latest top stories, weather, entertainment, politics and more.", rss.Channel.Description);
     }
     
     private static RssDocument GetFullRss()
