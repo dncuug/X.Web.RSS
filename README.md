@@ -19,8 +19,10 @@ To read foreign rss feed you need to get stream with rss data and call `RSSHelpe
     var request = WebRequest.Create("http://example.org/rss/");
     var response = request.GetResponse();
     var stream = response.GetResponseStream();
-    Rss rss = RSSHelper.ReadRSS(stream);
-    Assert.AreEqual("Example", rss.Channel.Title);
+    var rssStreamHandler = new RssStreamHandler();
+    var rss = rssStreamHandler.ReadFromStream(stream);
+    
+    Assert.Equal("Example", rss.Channel.Title);
 
 ### RSS object creating example
 
