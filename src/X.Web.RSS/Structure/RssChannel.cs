@@ -14,7 +14,7 @@ namespace X.Web.RSS.Structure;
 ///   which contains information about the channel (metadata) and its contents.
 /// </summary>
 [PublicAPI]
-public class RssChannel
+public class RssChannel : IRssChannel
 {
     public RssChannel()
     {
@@ -249,7 +249,6 @@ public class RssChannel
     ///   betty@herald.com (Betty Guernsey)
     /// </example>
     [XmlElement("webMaster")]
-    //public RssEmail WebMaster { get; set; }
     public RssPerson WebMaster { get; set; }
 
     /// <summary>
