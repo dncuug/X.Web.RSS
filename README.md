@@ -1,6 +1,7 @@
 # X.Web.RSS 
 [![NuGet version](https://badge.fury.io/nu/xwebrss.svg)](https://badge.fury.io/nu/xwebrss)
 [![Part of awesome .NET Core](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/thangchung/awesome-dotnet-core#tools)
+[![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/andrew_gubskiy.svg?style=social&label=Follow%20%40andrew_gubskiy)](https://twitter.com/andrew_gubskiy)
 
 This project you also can download from Nuget.org at http://nuget.org/packages/xwebrss/
 
@@ -106,5 +107,3 @@ Complete rss object will looks like this:
 
 ## Get a digital subscription for project news
 [Subscribe](https://twitter.com/intent/user?screen_name=andrew_gubskiy) to my Twitter to keep up-to-date with project news and receive announcements.
-
-[![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/andrew_gubskiy.svg?style=social&label=Follow%20%40andrew_gubskiy)](https://twitter.com/andrew_gubskiy)
