@@ -1,30 +1,38 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Version>2.5.0</Version>
-    <VersionSuffix>beta</VersionSuffix>
-    <Description>X.Web.RSS allow quickly and easily generate RSS feeds.</Description>
-    <Copyright>Andrew Gubskiy</Copyright>
-    <PackageProjectUrl>https://github.com/ernado-x/X.Web.RSS</PackageProjectUrl>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/ernado-x/X.Web.RSS</RepositoryUrl>
-    <PackageIconUrl>https://ru.gravatar.com/userimage/8071071/f2dc08ee7e4016451f64a7ae9cffd110.png?size=200</PackageIconUrl>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <PackageId>xwebrss</PackageId>
+    <Title>X.Web.RSS</Title>
     <Authors>Andrew Gubskiy</Authors>
     <Company>Ukrainian .NET Developer Community</Company>
+
+    <Description>X.Web.RSS allow quickly and easily generate RSS feeds.</Description>
+    <Copyright>Andrew Gubskiy</Copyright>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/ernado-x/X.Web.RSS</RepositoryUrl>
+
+    <PackageIconUrl>https://ru.gravatar.com/userimage/8071071/f2dc08ee7e4016451f64a7ae9cffd110.png?size=200</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/ernado-x/X.Web.RSS</PackageProjectUrl>
+    <PackageTags>rss, xml</PackageTags>
+    <PackageVersion>2.7.0</PackageVersion>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+
+    <Version>2.7.0</Version>
+    <AssemblyVersion>2.7.0.0</AssemblyVersion>
+    <FileVersion>2.7.0.0</FileVersion>
     <LangVersion>default</LangVersion>
     <Nullable>enable</Nullable>
-    <PackageTags>rss, xml</PackageTags>
-    <TargetFrameworks>net6.0;net7.0;netstandard2.0;netstandard2.1</TargetFrameworks>
-    <Title>X.Web.RSS</Title>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/dncuug/X.Web.RSS/master/README.md</PackageLicenseUrl>
-    <AssemblyVersion>2.5.0.0</AssemblyVersion>
-    <FileVersion>2.5.0.0</FileVersion>
+    <TargetFrameworks>net6.0;net8.0;netstandard2.0;netstandard2.1</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JetBrains.Annotations" Version="2024.2.0" />
+    <None Include="../../LICENSE.md" Pack="true" PackagePath=""/>
+    <None Include="../../README.md" Pack="true" PackagePath=""/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="2024.2.0" PrivateAssets="All"/>
     <PackageReference Include="System.Net.Requests" Version="4.3.0" />
     <PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
     <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
