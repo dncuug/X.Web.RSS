@@ -114,14 +114,15 @@ public class RssDocument
     }
 
     public static RssDocument Load(Stream source)
-    {
+    {       
         var xsn = new XmlSerializerNamespaces();
         xsn.Add("atom", "http://www.w3.org/2005/Atom");
         xsn.Add("dc", "http://purl.org/dc/elements/1.1/");
         xsn.Add("content", "http://purl.org/rss/1.0/modules/content/");
 
-        var ser = new XmlSerializer(typeof(RssDocument));
-        return (RssDocument)ser.Deserialize(source);
+        var serializer = new XmlSerializer(typeof(RssDocument));
+        
+        return (RssDocument)serializer.Deserialize(source);
     }
 
     public static void WriteRSS(RssDocument value, Stream destination)
@@ -131,7 +132,8 @@ public class RssDocument
         xsn.Add("dc", "http://purl.org/dc/elements/1.1/");
         xsn.Add("content", "http://purl.org/rss/1.0/modules/content/");
 
-        var ser = new XmlSerializer(value.GetType());
-        ser.Serialize(destination, value, xsn);
+        var serializer = new XmlSerializer(value.GetType());
+        
+        serializer.Serialize(destination, value, xsn);
     }
 }

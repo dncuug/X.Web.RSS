@@ -42,14 +42,14 @@ public class RSSHelperTest
     [Fact]
     public void Test()
     {
-        var request = WebRequest.Create("https://news.microsoft.com/feed/");
+        var request = WebRequest.Create("https://feeds.bbci.co.uk/news/world/rss.xml");
         var response = request.GetResponse();
         var stream = response.GetResponseStream();
 
         var rss = RssDocument.Load(stream);
 
-        Assert.Equal("Stories", rss.Channel.Title);
-        Assert.Equal("Microsoft news, features, events, and press materials", rss.Channel.Description);
+        Assert.Equal("BBC News", rss.Channel.Title);
+        Assert.Equal("BBC News - World", rss.Channel.Description);
     }
     
     private static RssDocument GetFullRss()
