@@ -34,4 +34,8 @@
         <None Include="README.md" Pack="true" PackagePath=""/>
     </ItemGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\X.Web.RSS\X.Web.RSS.csproj"/>
+    </ItemGroup>
+
 </Project>
