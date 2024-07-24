@@ -8,6 +8,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X.Web.RSS", "src\X.Web.RSS\X.Web.RSS.csproj", "{301677B9-1586-4043-90C3-52A164230723}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{738DC914-F2F1-47DA-B96F-80F19ECA01C0}"
+	ProjectSection(SolutionItems) = preProject
+		src\Directory.Build.props = src\Directory.Build.props
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0C7B1C4A-61AE-4F43-96F8-3CD6A5774C9E}"
 EndProject
