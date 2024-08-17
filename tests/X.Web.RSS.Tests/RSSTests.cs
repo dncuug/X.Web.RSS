@@ -12,7 +12,7 @@ using Xunit;
 
 namespace X.Web.RSS.Tests;
 
-public class RSSHelperTest
+public class RSSTests
 {
     [Fact]
     public void WriteRead_LargeObject_Ok()
