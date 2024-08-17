@@ -91,7 +91,13 @@ public record RssItem
     [XmlElement("pubDate")]
     public string InternalPubDate
     {
-        get => PubDate?.ToRFC822Date() ?? string.Empty;
-        set => PubDate = value?.FromRFC822Date();
+        get 
+        {
+            return PubDate?.ToRFC822Date() ?? string.Empty;
+        }
+        set 
+        {
+            PubDate = value?.FromRFC822Date();
+        }
     }
 }

@@ -14,7 +14,7 @@ public static class DateTimeExtensions
         var timeZone = GetTimeZone();
 
         var result = date.ToString("ddd, dd MMM yyyy HH:mm:ss " + timeZone.PadRight(5, '0'));
-        
+
         return result;
     }
 
@@ -29,9 +29,26 @@ public static class DateTimeExtensions
             var i = offset * -1;
             timeZone = "-" + i.ToString().PadLeft(2, '0');
         }
-        
+
         return timeZone;
     }
 
-    public static DateTime FromRFC822Date(this string date) => DateTime.Parse(date);
+    public static DateTime FromRFC822Date(this string date)
+    {
+        if (DateTime.TryParse(date, out var result))
+        {
+            return result;
+        }
+        else
+        {
+            var format = "ddd, dd MMM yyyy HH:mm:ss 'PST'";
+
+            if (DateTime.TryParseExact(date, format, CultureInfo.InvariantCulture, DateTimeStyles.None, out result))
+            {
+                return result;
+            }
+        }
+
+        throw new FormatException("Invalid date format");
+    }
 }
