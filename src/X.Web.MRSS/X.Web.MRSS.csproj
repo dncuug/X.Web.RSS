@@ -7,7 +7,20 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\X.Web.RSS\X.Web.RSS.csproj" />
+      <ProjectReference Include="../X.Web.RSS/X.Web.RSS.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="../../LICENSE.md" Pack="true" PackagePath=""/>
+        <None Include="../../README.md" Pack="true" PackagePath=""/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="../../x-web.png" Pack="True" PackagePath=""/>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="JetBrains.Annotations" Version="2024.2.0" PrivateAssets="All"/>
     </ItemGroup>
 
 </Project>
