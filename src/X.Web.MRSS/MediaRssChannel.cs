@@ -3,7 +3,7 @@ using X.Web.RSS.Structure;
 
 namespace X.Web.MRSS;
 
-public class MediaRssChannel : RssChannel
+public class MediaRssChannel : RssChannelBase
 {
     public MediaRssChannel()
     {
@@ -20,6 +20,6 @@ public class MediaRssChannel : RssChannel
     ///   be omitted. All elements of an item are optional, however at least one of 
     ///   title or description must be present.
     /// </summary>
-    [XmlElement("Items", Type = typeof(MediaRssItem))]
-    public new List<MediaRssItem> Items { get; set; }
+    [XmlElement("item")]
+    public List<MediaRssItem> Items { get; set; }
 }

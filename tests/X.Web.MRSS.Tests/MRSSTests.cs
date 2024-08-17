@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using X.Web.MRSS;
-using X.Web.RSS.Enumerators;
-using X.Web.RSS.Structure;
-using X.Web.RSS.Structure.Validators;
-using Xunit;
+﻿using Xunit;
 
-namespace X.Web.RSS.Tests;
+namespace X.Web.MRSS.Tests;
 
 public class MRSSTests
 {

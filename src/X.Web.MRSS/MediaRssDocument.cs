@@ -3,7 +3,8 @@ using X.Web.RSS;
 
 namespace X.Web.MRSS;
 
-public class MediaRssDocument : RssDocument
+[XmlRoot("rss")]
+public class MediaRssDocument : IRssDocument<MediaRssChannel>
 {
     public MediaRssDocument()
     {
@@ -15,5 +16,7 @@ public class MediaRssDocument : RssDocument
     ///   which contains information about the channel (metadata) and its contents.
     /// </summary>
     [XmlElement("channel")]
-    public new MediaRssChannel Channel { get; set; }
+    public MediaRssChannel Channel { get; set; }
+
+    public string Version { get; set; }
 }
