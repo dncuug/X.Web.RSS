@@ -17,7 +17,7 @@ namespace X.Web.RSS;
 /// http://www.w3.org/TR/REC-xml
 /// </summary>
 [XmlRoot("rss")]
-public class RssDocument : IRssDocument<RssChannel>
+public record RssDocument : IRssDocument<RssChannel>
 {
     public const string MimeType = "application/rss+xml";
 

@@ -1,10 +1,11 @@
 ﻿using System.Xml.Serialization;
+using X.Web.MRSS.Structure;
 using X.Web.RSS;
 
 namespace X.Web.MRSS;
 
 [XmlRoot("rss")]
-public class MediaRssDocument : IRssDocument<MediaRssChannel>
+public record MediaRssDocument : IRssDocument<MediaRssChannel>
 {
     public MediaRssDocument()
     {

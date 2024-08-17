@@ -1,9 +1,9 @@
 using System.Xml.Serialization;
 using X.Web.RSS.Structure;
 
-namespace X.Web.MRSS;
+namespace X.Web.MRSS.Structure;
 
-public class MediaRssChannel : RssChannelBase
+public record MediaRssChannel : RssChannelBase
 {
     public MediaRssChannel()
     {

@@ -10,7 +10,7 @@ using X.Web.RSS.Structure.Validators;
 namespace X.Web.RSS.Structure;
 
 [PublicAPI]
-public abstract class RssChannelBase
+public abstract record RssChannelBase
 {
     public RssChannelBase()
     {

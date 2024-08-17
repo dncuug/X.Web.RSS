@@ -9,7 +9,7 @@ namespace X.Web.RSS.Structure;
 ///   which contains information about the channel (metadata) and its contents.
 /// </summary>
 [PublicAPI]
-public class RssChannel : RssChannelBase
+public record RssChannel : RssChannelBase
 {
     public RssChannel()
     {
