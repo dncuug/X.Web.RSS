@@ -220,7 +220,6 @@ public class RssChannel
     public int TTL
     {
         get => new RssTtl(InternalTTL).TTL;
-
         set => InternalTTL = new RssTtl(value).TTLString;
     }
 
