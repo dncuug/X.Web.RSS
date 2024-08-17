@@ -7,11 +7,26 @@ using JetBrains.Annotations;
 namespace X.Web.RSS;
 
 [PublicAPI]
-public interface IRssDocumentSerializer
+public interface IDocumentSerializer<T>
 {
-    RssDocument? Deserialize(string xml);
-    
-    string Serialize(RssDocument document);
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="xml"></param>
+    /// <returns></returns>
+    T? Deserialize(string xml);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="document"></param>
+    /// <returns></returns>
+    string Serialize(T document);
+}
+
+[PublicAPI]
+public interface IRssDocumentSerializer : IDocumentSerializer<RssDocument>
+{
 }
 
 [PublicAPI]
@@ -36,7 +51,7 @@ public class RssDocumentSerializer : IRssDocumentSerializer
 
         var serializer = new XmlSerializer(typeof(RssDocument));
         var instance = (RssDocument)serializer.Deserialize(writer.BaseStream);
-        
+
         return instance;
     }
 
