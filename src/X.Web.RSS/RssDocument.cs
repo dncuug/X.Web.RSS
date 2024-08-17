@@ -8,6 +8,7 @@ using X.Web.RSS.Structure;
 
 namespace X.Web.RSS;
 
+
 /// <summary>
 /// RSS is a Web content syndication format.
 /// Its name is an acronym for Really Simple Syndication.
@@ -16,7 +17,7 @@ namespace X.Web.RSS;
 /// http://www.w3.org/TR/REC-xml
 /// </summary>
 [XmlRoot("rss")]
-public class RssDocument
+public class RssDocument : IRssDocument<RssChannel>
 {
     public const string MimeType = "application/rss+xml";
 

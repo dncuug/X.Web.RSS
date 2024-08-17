@@ -15,7 +15,7 @@ namespace X.Web.RSS.Structure;
 ///   be omitted. All elements of an item are optional, however at least one of 
 ///   title or description must be present.
 /// </summary>
-public class RssItem
+public record RssItem
 {
     /// <summary>
     ///   Gets or sets email address of the author of the item.
