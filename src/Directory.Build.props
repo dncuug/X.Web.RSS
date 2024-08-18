@@ -13,7 +13,7 @@
         <Version>3.0.0-pre</Version>
         <AssemblyVersion>3.0.0</AssemblyVersion>
         <FileVersion>3.0.0</FileVersion>
-        <PackageVersion>3.0.0</PackageVersion>
+        <PackageVersion>3.0.0-pre</PackageVersion>
 
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
