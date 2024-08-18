@@ -44,31 +44,21 @@ public class RssDocumentSerializer : IRssDocumentSerializer
         writer.Flush();
         writer.BaseStream.Position = 0;
 
-        var xsn = new XmlSerializerNamespaces();
-        xsn.Add("atom", "http://www.w3.org/2005/Atom");
-        xsn.Add("dc", "http://purl.org/dc/elements/1.1/");
-        xsn.Add("content", "http://purl.org/rss/1.0/modules/content/");
-
         var serializer = new XmlSerializer(typeof(RssDocument));
-        var instance = (RssDocument)serializer.Deserialize(writer.BaseStream);
+        var instance = serializer.Deserialize(writer.BaseStream) as RssDocument;
 
         return instance;
     }
 
-
     public string Serialize(RssDocument document)
     {
-        var xsn = new XmlSerializerNamespaces();
-        xsn.Add("atom", "http://www.w3.org/2005/Atom");
-        xsn.Add("dc", "http://purl.org/dc/elements/1.1/");
-        xsn.Add("content", "http://purl.org/rss/1.0/modules/content/");
-
-        var serializer = new XmlSerializer(document.GetType());
+        var xsn = CreateXmlSerializerNamespaces();
+        var serializer = new XmlSerializer(typeof(RssDocument));
 
         var memoryStream = new MemoryStream();
         serializer.Serialize(memoryStream, document, xsn);
 
-        var xml = String.Empty;
+        var xml = string.Empty;
 
         if (memoryStream.TryGetBuffer(out var buffer))
         {
@@ -79,5 +69,15 @@ public class RssDocumentSerializer : IRssDocumentSerializer
         }
 
         return xml;
+    }
+    
+    private static XmlSerializerNamespaces CreateXmlSerializerNamespaces()
+    {
+        var xsn = new XmlSerializerNamespaces();
+        xsn.Add("atom", "http://www.w3.org/2005/Atom");
+        xsn.Add("dc", "http://purl.org/dc/elements/1.1/");
+        xsn.Add("content", "http://purl.org/rss/1.0/modules/content/");
+
+        return xsn;
     }
 }
