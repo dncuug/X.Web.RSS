@@ -146,7 +146,7 @@ public abstract record RssChannelBase
     ///   geo@herald.com (George Matesky)
     /// </example>
     [XmlElement("managingEditor")]
-    public RssPerson ManagingEditor { get; set; }
+    public string ManagingEditor { get; set; }
 
     /// <summary>
     ///   Gets or sets the publication date for the content in the channel. 
@@ -234,5 +234,5 @@ public abstract record RssChannelBase
     ///   betty@herald.com (Betty Guernsey)
     /// </example>
     [XmlElement("webMaster")]
-    public RssPerson WebMaster { get; set; }
+    public string WebMaster { get; set; }
 }

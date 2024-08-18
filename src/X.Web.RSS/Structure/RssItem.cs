@@ -20,7 +20,7 @@ public record RssItem
     ///   Gets or sets email address of the author of the item.
     /// </summary>
     [XmlElement("author")]
-    public RssEmail Author { get; set; }
+    public string Author { get; set; }
 
     /// <summary>
     ///   Gets or sets includes the item in one or more categories.

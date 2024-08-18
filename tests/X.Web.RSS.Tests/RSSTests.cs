@@ -107,7 +107,7 @@ public class RSSTests
                     Language = new CultureInfo("en"),
                     LastBuildDate = new DateTime(2011, 7, 17, 15, 55, 41),
                     Link = new RssUrl("http://channel.url.com"),
-                    ManagingEditor = new RssPerson("Manager", "managingEditor@mail.com"),
+                    ManagingEditor = "Manager (managingEditor@mail.com)",
                     PubDate = new DateTime(2011, 7, 17, 15, 55, 41),
                     Rating = "rating",
                     SkipDays = new List<Day> { Day.Thursday, Day.Wednesday },
@@ -122,13 +122,13 @@ public class RSSTests
                         },
                     Title = "channel title",
                     TTL = 10,
-                    WebMaster = new RssPerson("webmaster", "webmaster@mail.ru"),
+                    WebMaster = "webmaster (webmaster@mail.ru)",
                     Items =
                         new List<RssItem>
                         {
                             new RssItem
                             {
-                                Author = new RssEmail("item.author@mail.ru (author)"),
+                                Author = "item.author@mail.ru (author)",
                                 Category =
                                     new RssCategory
                                     {
