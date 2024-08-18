@@ -24,12 +24,7 @@ public interface IDocumentSerializer<T>
 }
 
 [PublicAPI]
-public interface IRssDocumentSerializer : IDocumentSerializer<RssDocument>
-{
-}
-
-[PublicAPI]
-public class RssDocumentSerializer : IRssDocumentSerializer
+public class RssDocumentSerializer : IDocumentSerializer<RssDocument>
 {
     public RssDocument? Deserialize(string xml)
     {
