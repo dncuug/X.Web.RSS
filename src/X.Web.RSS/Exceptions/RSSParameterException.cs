@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.Serialization;
 using JetBrains.Annotations;
 
 namespace X.Web.RSS.Exceptions;
@@ -17,13 +16,6 @@ public class RSSParameterException : Exception
 
     public RSSParameterException(string field, object value, Exception innerException)
         : base(string.Format(MessageText, field, value), innerException)
-    {
-        Field = field;
-        Value = value;
-    }
-
-    protected RSSParameterException(SerializationInfo info, StreamingContext context, string field, object value)
-        : base(info, context)
     {
         Field = field;
         Value = value;
