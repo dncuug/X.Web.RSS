@@ -8,7 +8,7 @@ namespace X.Web.RSS.Structure;
 ///   You can use it to specify a search engine box. Or to allow a reader 
 ///   to provide feedback. Most aggregators ignore it.
 /// </summary>
-public class RssTextInput
+public record RssTextInput
 {
     /// <summary>
     ///   Gets or sets explains the text input area.

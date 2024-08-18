@@ -2,7 +2,7 @@ using System.Xml.Serialization;
 
 namespace X.Web.RSS.Structure;
 
-public class RssPerson
+public record RssPerson
 {
     public RssPerson()
     {

@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 using X.Web.RSS.Enumerators;
 using X.Web.RSS.Structure;
 using X.Web.RSS.Structure.Validators;
@@ -11,42 +12,48 @@ using Xunit;
 
 namespace X.Web.RSS.Tests;
 
-public class RSSHelperTest
+public class RSSTests
 {
     [Fact]
     public void WriteRead_LargeObject_Ok()
-    {
-        var ms = new MemoryStream();
+    {        
         var rss = GetFullRss();
 
-        RssDocument.WriteRSS(rss, ms);
-        ms.Position = 0;
-        var newRss = RssDocument.Load(ms);
+        var serializer = new RssDocumentSerializer();
 
+        var xml = serializer.Serialize(rss);
+
+        var newRss = serializer.Deserialize(xml);
+
+        Assert.NotNull(newRss);
+        
         Assert.Equal(rss.Channel.Description, newRss.Channel.Description);
     }
 
     [Fact]
     public void Read_External_Ok()
     {
-        var ms = new MemoryStream();
-        var array = Encoding.UTF8.GetBytes(GetPartRssText());
-        ms.Write(array, 0, array.Length);
-        ms.Position = 0;
+        var serializer = new RssDocumentSerializer();
+        
+        var xml = GetPartRssText();
 
-        var rss = RssDocument.Load(ms);
+        var rss = serializer.Deserialize(xml);
         Assert.Equal("channel title", rss.Channel.Title);
         Assert.Equal("long description", rss.Channel.Description);
     }
 
     [Fact]
-    public void Test()
+    public async Task Test()
     {
+        var serializer = new RssDocumentSerializer();
+        
         var request = WebRequest.Create("https://feeds.bbci.co.uk/news/world/rss.xml");
-        var response = request.GetResponse();
+        var response = await request.GetResponseAsync();
         var stream = response.GetResponseStream();
+        var streamReader = new StreamReader(stream);
+        var xml = await streamReader.ReadToEndAsync();
 
-        var rss = RssDocument.Load(stream);
+        var rss = serializer.Deserialize(xml);
 
         Assert.Equal("BBC News", rss.Channel.Title);
         Assert.Equal("BBC News - World", rss.Channel.Description);

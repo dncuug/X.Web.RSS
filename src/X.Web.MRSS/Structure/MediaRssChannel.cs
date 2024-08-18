@@ -1,21 +1,15 @@
-﻿using System.Collections.Generic;
 using System.Xml.Serialization;
-using JetBrains.Annotations;
+using X.Web.RSS.Structure;
 
-namespace X.Web.RSS.Structure;
+namespace X.Web.MRSS.Structure;
 
-/// <summary>
-/// Subordinate to the 'rss' element is a single 'channel' element, 
-///   which contains information about the channel (metadata) and its contents.
-/// </summary>
-[PublicAPI]
-public record RssChannel : RssChannelBase
+public record MediaRssChannel : RssChannelBase
 {
-    public RssChannel()
+    public MediaRssChannel()
     {
-        Items = new List<RssItem>();
+        Items = new List<MediaRssItem>();
     }
-
+    
     /// <summary>
     ///   Gets or sets a channel may contain any number of 'item's. An item may represent 
     ///   a "story" -- much like a story in a newspaper or magazine; if so its
@@ -27,5 +21,5 @@ public record RssChannel : RssChannelBase
     ///   title or description must be present.
     /// </summary>
     [XmlElement("item")]
-    public List<RssItem> Items { get; set; }
+    public List<MediaRssItem> Items { get; set; }
 }

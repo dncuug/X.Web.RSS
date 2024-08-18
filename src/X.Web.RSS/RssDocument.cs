@@ -1,9 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 using X.Web.RSS.Structure;
 
 namespace X.Web.RSS;
@@ -16,7 +11,7 @@ namespace X.Web.RSS;
 /// http://www.w3.org/TR/REC-xml
 /// </summary>
 [XmlRoot("rss")]
-public class RssDocument
+public record RssDocument : IRssDocument<RssChannel>
 {
     public const string MimeType = "application/rss+xml";
 
@@ -40,100 +35,4 @@ public class RssDocument
     /// </summary>
     [XmlAttribute("version")]
     public string Version { get; set; }
-
-    /// <summary>
-    /// Render RSS to XML
-    /// </summary>
-    /// <returns></returns>
-    public string ToXml()
-    {
-        var ms = new MemoryStream();
-
-        WriteRSS(this, ms);
-
-        //var xml = Encoding.UTF8.GetString(ms.GetBuffer()).Trim('\0');
-        var xml = String.Empty;
-
-        if (ms.TryGetBuffer(out var buffer))
-        {
-            if (buffer.Array != null)
-            {
-                xml = Encoding.UTF8.GetString(buffer.Array).Trim('\0');
-            }
-        }
-
-        return xml;
-    }
-
-    /// <summary>
-    /// Loads the specified URL.
-    /// </summary>
-    /// <param name="url">The URL.</param>
-    /// <returns>RssDocument</returns>
-    public static async Task<RssDocument?> Load(Uri url)
-    {
-        if (WebRequest.Create(url) is HttpWebRequest request)
-        {
-            var response = await request.GetResponseAsync();
-
-            var encoding = Encoding.ASCII;
-            var xml = String.Empty;
-
-            var responseStream = response.GetResponseStream();
-
-            if (responseStream != null)
-            {
-                using (var reader = new StreamReader(responseStream, encoding))
-                {
-                    xml = await reader.ReadToEndAsync();
-                }
-            }
-
-            var rss = Load(xml);
-
-            return rss;
-        }
-
-        return null;
-    }
-
-    public static RssDocument? Load(string xml)
-    {
-        if (string.IsNullOrWhiteSpace(xml))
-        {
-            return null;
-        }
-        
-        var writer = new StreamWriter(new MemoryStream());
-        writer.Write(xml);
-        writer.Flush();
-        writer.BaseStream.Position = 0;
-
-        var instance = Load(writer.BaseStream);
-        return instance;
-    }
-
-    public static RssDocument Load(Stream source)
-    {       
-        var xsn = new XmlSerializerNamespaces();
-        xsn.Add("atom", "http://www.w3.org/2005/Atom");
-        xsn.Add("dc", "http://purl.org/dc/elements/1.1/");
-        xsn.Add("content", "http://purl.org/rss/1.0/modules/content/");
-
-        var serializer = new XmlSerializer(typeof(RssDocument));
-        
-        return (RssDocument)serializer.Deserialize(source);
-    }
-
-    public static void WriteRSS(RssDocument value, Stream destination)
-    {
-        var xsn = new XmlSerializerNamespaces();
-        xsn.Add("atom", "http://www.w3.org/2005/Atom");
-        xsn.Add("dc", "http://purl.org/dc/elements/1.1/");
-        xsn.Add("content", "http://purl.org/rss/1.0/modules/content/");
-
-        var serializer = new XmlSerializer(value.GetType());
-        
-        serializer.Serialize(destination, value, xsn);
-    }
 }
