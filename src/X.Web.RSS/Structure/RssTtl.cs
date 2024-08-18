@@ -1,21 +1,14 @@
-using System;
 using System.Xml.Serialization;
+using X.Web.RSS.Validators;
 
 namespace X.Web.RSS.Structure;
 
 public class RssTtl
 {
-    private int _ttl;
-
-    private string _ttlString;
+    private int? _ttl;
 
     public RssTtl()
     {
-    }
-
-    public RssTtl(string ttl)
-    {
-        TTLString = ttl;
     }
 
     public RssTtl(int ttl)
@@ -24,52 +17,22 @@ public class RssTtl
     }
 
 
-    [XmlIgnore]
-    public int TTL
+    [XmlText]
+    public int? TTL
     {
         get { return _ttl; }
         set
         {
-            if (value < 0)
-            {
-                throw new ArgumentException($"TTL must be positive: {value}", nameof(TTL));
-            }
+            new TTLValidator().Validate(value);
 
-            if (value != 0)
+            if (value == 0)
             {
-                _ttl = value;
-                _ttlString = _ttl.ToString();
+                _ttl = null;
             }
             else
             {
-                _ttl = 0;
-                _ttlString = null;
+                _ttl = value;
             }
-        }
-    }
-
-    [XmlText]
-    public string TTLString
-    {
-        get { return _ttlString; }
-
-        set
-        {
-            int parseTtl = 0;
-
-            if (value != null)
-            {
-                try
-                {
-                    parseTtl = int.Parse(value);
-                }
-                catch (Exception ex)
-                {
-                    throw new ArgumentException($"TTL must be a number: {value}", nameof(TTL));
-                }
-            }
-
-            TTL = parseTtl;
         }
     }
 }
