@@ -147,15 +147,7 @@ public abstract record RssChannelBase
     ///   geo@herald.com (George Matesky)
     /// </example>
     [XmlElement("managingEditor")]
-    //public string ManagingEditor => $"{ManagingEditorEmail?.Email} ({ManagingEditorName})";
-
     public RssPerson ManagingEditor { get; set; }
-
-    // [XmlIgnore]
-    // public RssEmail ManagingEditorEmail { get; set; }
-
-    // [XmlIgnore]
-    // public string ManagingEditorName { get; set; }
 
     /// <summary>
     ///   Gets or sets the publication date for the content in the channel. 
