@@ -2,7 +2,7 @@ using System;
 
 namespace X.Web.RSS.Validators;
 
-public class TTLValidator
+public class TTLValidator : IValidator<int?>
 {
     public void Validate(int? value)
     {

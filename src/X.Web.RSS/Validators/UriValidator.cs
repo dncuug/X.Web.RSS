@@ -2,7 +2,7 @@ using System;
 
 namespace X.Web.RSS.Validators;
 
-public class UriValidator
+public class UriValidator : IValidator<string?>
 {
     public void Validate(string? value)
     {

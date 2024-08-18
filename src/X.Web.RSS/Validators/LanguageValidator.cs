@@ -2,7 +2,7 @@ using System.Globalization;
 
 namespace X.Web.RSS.Validators;
 
-public class LanguageValidator
+public class LanguageValidator : IValidator<string?>
 {
     public void Validate(string? value)
     {
