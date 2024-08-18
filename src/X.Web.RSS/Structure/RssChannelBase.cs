@@ -5,12 +5,15 @@ using System.Xml.Serialization;
 using JetBrains.Annotations;
 using X.Web.RSS.Extensions;
 using X.Web.RSS.Enumerators;
+using X.Web.RSS.Validators;
 
 namespace X.Web.RSS.Structure;
 
 [PublicAPI]
 public abstract record RssChannelBase
 {
+    private int _ttl;
+
     public RssChannelBase()
     {
         Docs = "http://www.rssboard.org/rss-specification";
@@ -100,9 +103,6 @@ public abstract record RssChannelBase
         get => PubDate?.ToRFC822Date() ?? string.Empty;
         set => PubDate = value?.FromRFC822Date();
     }
-
-    [XmlElement("ttl")]
-    public string InternalTTL { get; set; }
 
     /// <summary>
     ///   Gets or sets OPTIONAL the language the channel is written in. This allows aggregators to group all 
@@ -199,14 +199,19 @@ public abstract record RssChannelBase
     public bool SkipHoursSpecified => SkipHours.Count > 0;
 
     /// <summary>
-    ///   Gets or sets ttl stands for time to live. It's a number of minutes that indicates how 
-    ///   long a channel can be cached before refreshing from the source.
+    /// Gets or sets ttl stands for time to live. It's a number of minutes that indicates how 
+    /// long a channel can be cached before refreshing from the source.
     /// </summary>
-    [XmlIgnore]
+    [XmlElement("ttl")]
     public int TTL
     {
-        get => new RssTtl(InternalTTL).TTL;
-        set => InternalTTL = new RssTtl(value).TTLString;
+        get => _ttl;
+        set
+        {
+            new TTLValidator().Validate(value);
+            
+            _ttl = value;
+        }
     }
 
     /// <summary>
