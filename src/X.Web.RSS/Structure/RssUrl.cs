@@ -1,74 +1,43 @@
 ﻿using System;
 using System.Xml.Serialization;
+using X.Web.RSS.Validators;
 
 namespace X.Web.RSS.Structure;
 
 public class RssUrl
 {
-    private Uri _url;
+    private readonly UriValidator _validator;
 
-    private string _urlString;
+    private string? _url;
 
     public RssUrl()
     {
+        _url = null;
+        _validator = new UriValidator();
     }
 
     public RssUrl(string newUrl)
+        : this()
     {
-        UrlString = newUrl;
+        _validator.Validate(newUrl);
+        _url = newUrl;
     }
 
-    public RssUrl(Uri newUrl)
+    public RssUrl(Uri url)
+        : this()
     {
-        Url = newUrl;
-    }
-
-    [XmlIgnore]
-    public Uri Url
-    {
-        get
-        {
-            return _url;
-        }
-        set
-        {
-            _url = value;
-            
-            if (_url == null)
-            {
-                _urlString = null;
-            }
-            else
-            {
-                _urlString = _url.AbsoluteUri;
-            }
-        }
+        _url = url.ToString();
     }
 
     [XmlText]
-    public string UrlString
+    public string? Url
     {
-        get
-        {
-            return _urlString;
-        }
+        get { return _url; }
         set
         {
-            Uri parseUrl = null;
-            
-            if (value != null)
-            {
-                try
-                {
-                    parseUrl = new Uri(value, UriKind.Absolute);
-                }
-                catch (Exception ex)
-                {
-                    throw new UriFormatException($"Invalid url string: {value}", ex);
-                }
-            }
+            _validator.Validate(value);
 
-            Url = parseUrl;
+            _url = value;
         }
     }
 }

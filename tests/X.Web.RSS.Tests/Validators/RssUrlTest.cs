@@ -16,7 +16,7 @@ public class RssUrlTest
         var rssUrl = new RssUrl(uri);
 
         // Assert
-        Assert.Equal(uri, rssUrl.Url);
+        Assert.Equal(uri.ToString(), rssUrl.Url);
     }
 
     [Fact]
@@ -27,10 +27,10 @@ public class RssUrlTest
         Uri uri = new Uri("http://test.url.com");
 
         // Action
-        rssUrl.Url = uri;
+        rssUrl.Url = uri.ToString();
 
         // Assert
-        Assert.Equal(uri, rssUrl.Url);
+        Assert.Equal(uri.ToString(), rssUrl.Url);
     }
 
     [Fact]
@@ -43,7 +43,7 @@ public class RssUrlTest
         RssUrl rssUrl = new RssUrl(uri);
 
         // Assert
-        Assert.Equal(uri, rssUrl.UrlString);
+        Assert.Equal(uri, rssUrl.Url);
     }
 
     [Fact]
@@ -54,10 +54,10 @@ public class RssUrlTest
         String uri = new Uri("http://test.url.com").ToString();
 
         // Action
-        rssUrl.UrlString = uri;
+        rssUrl.Url = uri;
 
         // Assert
-        Assert.Equal(uri, rssUrl.UrlString);
+        Assert.Equal(uri, rssUrl.Url);
     }
 
     [Fact]
@@ -68,10 +68,10 @@ public class RssUrlTest
         Uri uri = new Uri("http://test.url.com");
 
         // Action
-        rssUrl.UrlString = uri.AbsoluteUri;
+        rssUrl.Url = uri.AbsoluteUri;
 
         // Assert
-        Assert.Equal(uri, rssUrl.Url);
+        Assert.Equal(uri.ToString(), rssUrl.Url);
     }
 
     [Fact]
@@ -82,10 +82,10 @@ public class RssUrlTest
         Uri uri = new Uri("http://test.url.com");
 
         // Action
-        rssUrl.Url = uri;
+        rssUrl.Url = uri.ToString();
 
         // Assert
-        Assert.Equal(uri.AbsoluteUri, rssUrl.UrlString);
+        Assert.Equal(uri.AbsoluteUri, rssUrl.Url);
     }
 
     [Fact]
@@ -95,7 +95,7 @@ public class RssUrlTest
         RssUrl rssUrl = new RssUrl();
 
         // Action
-        rssUrl.UrlString = null;
+        rssUrl.Url = null;
 
         // Assert
         Assert.Equal(null, rssUrl.Url);
@@ -111,7 +111,7 @@ public class RssUrlTest
         rssUrl.Url = null;
 
         // Assert
-        Assert.Equal(null, rssUrl.UrlString);
+        Assert.Equal(null, rssUrl.Url);
     }
 
     [Fact]
@@ -125,7 +125,7 @@ public class RssUrlTest
         UriFormatException e = null;
         try
         {
-            rssUrl.UrlString = InvalidUri;
+            rssUrl.Url = InvalidUri;
         }
         catch (UriFormatException ex)
         {

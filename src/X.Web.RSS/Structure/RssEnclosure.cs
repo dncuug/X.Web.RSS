@@ -34,7 +34,7 @@ public record RssEnclosure
     public RssUrl Url
     {
         get => new RssUrl(InternalUrl);
-        set => InternalUrl = value.UrlString;
+        set => InternalUrl = value.Url;
     }
 
     [XmlAttribute("url")]

@@ -148,7 +148,7 @@ public class RSSTests
                                 PubDate = new DateTime(2011, 7, 17, 15, 55, 41),
                                 Title = "item title",
                                 Guid = new RssGuid { IsPermaLink = false, Value = "guid value" },
-                                Source = new RssSource { Url = new RssUrl("http://rss.item.source.url.com") }
+                                Source = new RssSource { Url = "http://rss.item.source.url.com" }
                             }
                         }
                 }

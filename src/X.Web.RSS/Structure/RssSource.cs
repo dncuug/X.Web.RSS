@@ -1,5 +1,6 @@
 ﻿using System.Xml.Serialization;
 using JetBrains.Annotations;
+using X.Web.RSS.Validators;
 
 namespace X.Web.RSS.Structure;
 
@@ -12,18 +13,22 @@ namespace X.Web.RSS.Structure;
 [PublicAPI]
 public record RssSource
 {
+    private string _internalUrl;
+
     public RssSource()
     {
-        InternalUrl = "";
-    }
-
-    [XmlIgnore]
-    public RssUrl Url
-    {
-        get => new RssUrl(InternalUrl);
-        set => InternalUrl = value.UrlString;
+        Url = "";
     }
 
     [XmlAttribute("url")]
-    public string InternalUrl { get; set; }
+    public string Url
+    {
+        get => _internalUrl;
+        set
+        {
+            new UriValidator().Validate(value);
+            
+            _internalUrl = value;
+        }
+    }
 }
