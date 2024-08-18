@@ -5,7 +5,7 @@ using X.Web.RSS.Structure.Validators;
 namespace X.Web.RSS.Structure;
 
 [PublicAPI]
-public class RssEnclosure
+public record RssEnclosure
 {
     /// <summary>
     ///   Gets or sets length says how big it is in bytes

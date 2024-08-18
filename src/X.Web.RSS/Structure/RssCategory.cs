@@ -2,7 +2,7 @@
 
 namespace X.Web.RSS.Structure;
 
-public class RssCategory
+public record RssCategory
 {
     public RssCategory()
     {

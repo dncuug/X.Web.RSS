@@ -7,7 +7,7 @@ namespace X.Web.RSS.Structure;
 /// <summary>
 /// Specifies a GIF, JPEG or PNG image that can be displayed with the channel.
 /// </summary>
-public class RssImage
+public record RssImage
 {
     private int _height = 31;
     private int _width = 88;

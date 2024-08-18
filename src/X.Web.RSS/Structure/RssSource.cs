@@ -11,13 +11,13 @@ namespace X.Web.RSS.Structure;
 ///   automatically when forwarding an item from an aggregator to a weblog authoring tool.
 /// </summary>
 [PublicAPI]
-public class RssSource
+public record RssSource
 {
     public RssSource()
     {
         InternalUrl = "";
     }
-    
+
     [XmlIgnore]
     public RssUrl Url
     {

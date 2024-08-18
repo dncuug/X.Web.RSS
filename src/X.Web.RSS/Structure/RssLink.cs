@@ -9,7 +9,7 @@ namespace X.Web.RSS.Structure;
 /// &lt;atom:link href = "http://bash.org.ru/rss/" rel = "self" type = "application/rss+xml" /&gt;
 /// </summary>
 [PublicAPI]
-public class RssLink
+public record RssLink
 {
     public RssLink()
     {

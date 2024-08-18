@@ -8,7 +8,7 @@ namespace X.Web.RSS.Structure;
 ///   When present, an aggregator may choose to use this string to 
 ///   determine if an item is new.
 /// </summary>
-public class RssGuid
+public record RssGuid
 {
     public RssGuid()
     {

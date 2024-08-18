@@ -10,7 +10,7 @@ namespace X.Web.RSS.Structure;
 ///   notified of updates to the channel, implementing a lightweight 
 ///   publish-subscribe protocol for RSS feeds.
 /// </summary>
-public class RssCloud
+public record RssCloud
 {
     /// <summary>
     ///   Gets or sets a list of URLs of RSS documents that the client seeks to monitor
