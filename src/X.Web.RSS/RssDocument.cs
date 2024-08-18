@@ -1,13 +1,7 @@
-﻿using System;
-using System.IO;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 using X.Web.RSS.Structure;
 
 namespace X.Web.RSS;
-
 
 /// <summary>
 /// RSS is a Web content syndication format.

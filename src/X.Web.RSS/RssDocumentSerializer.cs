@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using System.Text;
 using System.Xml.Serialization;
@@ -70,7 +69,7 @@ public class RssDocumentSerializer : IRssDocumentSerializer
 
         return xml;
     }
-    
+
     private static XmlSerializerNamespaces CreateXmlSerializerNamespaces()
     {
         var xsn = new XmlSerializerNamespaces();
