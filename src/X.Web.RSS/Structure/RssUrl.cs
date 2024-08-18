@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Xml.Serialization;
-using X.Web.RSS.Exceptions;
 
 namespace X.Web.RSS.Structure;
 
@@ -65,7 +64,7 @@ public class RssUrl
                 }
                 catch (Exception ex)
                 {
-                    throw new RSSParameterException("url", value, ex);
+                    throw new UriFormatException($"Invalid url string: {value}", ex);
                 }
             }
 

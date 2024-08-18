@@ -1,7 +1,6 @@
 using System;
 using System.Globalization;
 using System.Xml.Serialization;
-using X.Web.RSS.Exceptions;
 
 namespace X.Web.RSS.Structure;
 
@@ -40,7 +39,7 @@ public class RssDate
                 }
                 catch (Exception ex)
                 {
-                    throw new RSSParameterException("date", value, ex);
+                    throw new ArgumentException($"Unable to parse date: {value}", ex);
                 }
             }
 
@@ -71,7 +70,7 @@ public class RssDate
             {
                 if (value > DateTime.Now)
                 {
-                    throw new RSSParameterException("newDate", value);
+                    throw new ArgumentException($"Date cannot be greater than today: {value}", nameof(value));
                 }
             }
 

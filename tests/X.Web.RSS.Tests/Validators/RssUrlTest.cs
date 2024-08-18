@@ -1,6 +1,4 @@
 using System;
-using System.Globalization;
-using X.Web.RSS.Exceptions;
 using X.Web.RSS.Structure;
 using Xunit;
 
@@ -20,7 +18,7 @@ public class RssUrlTest
         // Assert
         Assert.Equal(uri, rssUrl.Url);
     }
-        
+
     [Fact]
     public void SetUri_ValidUriParameter_Ok()
     {
@@ -34,7 +32,7 @@ public class RssUrlTest
         // Assert
         Assert.Equal(uri, rssUrl.Url);
     }
-        
+
     [Fact]
     public void Ctor_ValidStringParameter_Ok()
     {
@@ -124,12 +122,12 @@ public class RssUrlTest
         const string InvalidUri = "adsfsadf";
 
         // Action
-        RSSParameterException e = null;
+        UriFormatException e = null;
         try
         {
             rssUrl.UrlString = InvalidUri;
         }
-        catch (RSSParameterException ex)
+        catch (UriFormatException ex)
         {
             e = ex;
         }
@@ -145,15 +143,16 @@ public class RssUrlTest
         const string InvalidUri = "adsfsadf";
 
         // Action
-        RSSParameterException e = null;
+        UriFormatException e = null;
         try
         {
             new RssUrl(InvalidUri);
         }
-        catch (RSSParameterException ex)
+        catch (UriFormatException ex)
         {
             e = ex;
         }
+
 
         // Assert
         Assert.NotNull(e);

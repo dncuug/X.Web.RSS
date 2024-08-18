@@ -1,7 +1,5 @@
 using Xunit;
 using System;
-using System.Globalization;
-using X.Web.RSS.Exceptions;
 using X.Web.RSS.Extensions;
 using X.Web.RSS.Structure;
 
@@ -29,12 +27,13 @@ public class RssDateTest
         DateTime date = DateTime.Now.AddDays(1);
 
         // Action
-        RSSParameterException e = null;
+        ArgumentException e = null;
+
         try
         {
             new RssDate(date);
         }
-        catch (RSSParameterException ex)
+        catch (ArgumentException ex)
         {
             e = ex;
         }
@@ -65,12 +64,12 @@ public class RssDateTest
         DateTime date = DateTime.Now.AddDays(1);
 
         // Action
-        RSSParameterException e = null;
+        ArgumentException e = null;
         try
         {
             rssDate.Date = date;
         }
-        catch (RSSParameterException ex)
+        catch (ArgumentException ex)
         {
             e = ex;
         }
@@ -99,12 +98,12 @@ public class RssDateTest
         String date = DateTime.Now.AddDays(1).ToString("R");
 
         // Action
-        RSSParameterException e = null;
+        ArgumentException e = null;
         try
         {
             new RssDate(date);
         }
-        catch (RSSParameterException ex)
+        catch (ArgumentException ex)
         {
             e = ex;
         }
@@ -135,12 +134,12 @@ public class RssDateTest
         String date = DateTime.Now.AddDays(1).ToString("R");
 
         // Action
-        RSSParameterException e = null;
+        ArgumentException e = null;
         try
         {
             rssDate.DateString = date;
         }
-        catch (RSSParameterException ex)
+        catch (ArgumentException ex)
         {
             e = ex;
         }
@@ -209,12 +208,12 @@ public class RssDateTest
         const string InvalidDate = "adsfsadf";
 
         // Action
-        RSSParameterException e = null;
+        ArgumentException e = null;
         try
         {
             rssDate.DateString = InvalidDate;
         }
-        catch (RSSParameterException ex)
+        catch (ArgumentException ex)
         {
             e = ex;
         }
@@ -230,12 +229,12 @@ public class RssDateTest
         const string InvalidDate = "adsfsadf";
 
         // Action
-        RSSParameterException e = null;
+        ArgumentException e = null;
         try
         {
             new RssDate(InvalidDate);
         }
-        catch (RSSParameterException ex)
+        catch (ArgumentException ex)
         {
             e = ex;
         }

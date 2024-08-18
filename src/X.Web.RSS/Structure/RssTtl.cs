@@ -1,6 +1,5 @@
 using System;
 using System.Xml.Serialization;
-using X.Web.RSS.Exceptions;
 
 namespace X.Web.RSS.Structure;
 
@@ -33,7 +32,7 @@ public class RssTtl
         {
             if (value < 0)
             {
-                throw new RSSParameterException($"{this.GetType()}.ttl", value);
+                throw new ArgumentException($"TTL must be positive: {value}", nameof(TTL));
             }
 
             if (value != 0)
@@ -66,7 +65,7 @@ public class RssTtl
                 }
                 catch (Exception ex)
                 {
-                    throw new RSSParameterException("ttl", value, ex);
+                    throw new ArgumentException($"TTL must be a number: {value}", nameof(TTL));
                 }
             }
 

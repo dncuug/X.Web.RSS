@@ -1,5 +1,5 @@
-﻿using System.Xml.Serialization;
-using X.Web.RSS.Exceptions;
+﻿using System;
+using System.Xml.Serialization;
 
 namespace X.Web.RSS.Structure;
 
@@ -29,7 +29,7 @@ public record RssImage
         {
             if (_width > 144)
             {
-                throw new RSSParameterException("width", _width);
+                throw new ArgumentException("Width must be less than 144: {_width}", nameof(Width));
             }
 
             _width = value;
@@ -47,7 +47,7 @@ public record RssImage
         {
             if (_height > 400)
             {
-                throw new RSSParameterException("height", _height);
+                throw new ArgumentException("Width must be less than 400: {_height}", nameof(Height));
             }
 
             _height = value;

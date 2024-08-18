@@ -39,14 +39,12 @@ public static class DateTimeExtensions
         {
             return result;
         }
-        else
-        {
-            var format = "ddd, dd MMM yyyy HH:mm:ss 'PST'";
 
-            if (DateTime.TryParseExact(date, format, CultureInfo.InvariantCulture, DateTimeStyles.None, out result))
-            {
-                return result;
-            }
+        var format = "ddd, dd MMM yyyy HH:mm:ss 'PST'";
+
+        if (DateTime.TryParseExact(date, format, CultureInfo.InvariantCulture, DateTimeStyles.None, out result))
+        {
+            return result;
         }
 
         throw new FormatException("Invalid date format");

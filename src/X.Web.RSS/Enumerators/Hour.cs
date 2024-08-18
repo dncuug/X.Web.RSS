@@ -1,4 +1,4 @@
-﻿using X.Web.RSS.Exceptions;
+﻿using System;
 using System.Xml.Serialization;
 
 namespace X.Web.RSS.Enumerators;
@@ -24,7 +24,7 @@ public class Hour
         {
             if (value < 0 || value > 23)
             {
-                throw new RSSParameterException("hour", value);
+                throw new ArgumentException($"Value must be between 0 and 23: {value}", nameof(value));
             }
 
             _value = value;

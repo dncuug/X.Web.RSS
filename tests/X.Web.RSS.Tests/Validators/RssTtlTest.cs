@@ -1,4 +1,4 @@
-using X.Web.RSS.Exceptions;
+using System;
 using X.Web.RSS.Structure;
 using Xunit;
 
@@ -26,12 +26,12 @@ public class RssTtlTest
         const int TTL = -1;
 
         // Action
-        RSSParameterException e = null;
+        ArgumentException e = null;
         try
         {
             new RssTtl(TTL);
         }
-        catch (RSSParameterException ex)
+        catch (ArgumentException ex)
         {
             e = ex;
         }
@@ -62,12 +62,12 @@ public class RssTtlTest
         const int TTL = -1;
 
         // Action
-        RSSParameterException e = null;
+        ArgumentException e = null;
         try
         {
             rssTtl.TTL = TTL;
         }
-        catch (RSSParameterException ex)
+        catch (ArgumentException ex)
         {
             e = ex;
         }
@@ -96,12 +96,12 @@ public class RssTtlTest
         const string TTL = "-1";
 
         // Action
-        RSSParameterException e = null;
+        ArgumentException e = null;
         try
         {
             new RssTtl(TTL);
         }
-        catch (RSSParameterException ex)
+        catch (ArgumentException ex)
         {
             e = ex;
         }
@@ -132,12 +132,12 @@ public class RssTtlTest
         const string TTL = "-1";
 
         // Action
-        RSSParameterException e = null;
+        ArgumentException e = null;
         try
         {
             rssTtl.TTLString = TTL;
         }
-        catch (RSSParameterException ex)
+        catch (ArgumentException ex)
         {
             e = ex;
         }
@@ -208,12 +208,12 @@ public class RssTtlTest
         const string Invalidttl = "adsfsadf";
 
         // Action
-        RSSParameterException e = null;
+        ArgumentException e = null;
         try
         {
             rssTtl.TTLString = Invalidttl;
         }
-        catch (RSSParameterException ex)
+        catch (ArgumentException ex)
         {
             e = ex;
         }
@@ -229,12 +229,12 @@ public class RssTtlTest
         const string Invalidttl = "adsfsadf";
 
         // Action
-        RSSParameterException e = null;
+        ArgumentException e = null;
         try
         {
             new RssTtl(Invalidttl);
         }
-        catch (RSSParameterException ex)
+        catch (ArgumentException ex)
         {
             e = ex;
         }
