@@ -91,14 +91,14 @@ public abstract record RssChannelBase
     [XmlElement("lastBuildDate")]
     public string InternalLastBuildDate
     {
-        get => LastBuildDate?.ToRFC822Date();
+        get => LastBuildDate?.ToRFC822Date() ?? string.Empty;
         set => LastBuildDate = value?.FromRFC822Date();
     }
 
     [XmlElement("pubDate")]
     public string InternalPubDate
     {
-        get => PubDate?.ToRFC822Date();
+        get => PubDate?.ToRFC822Date() ?? string.Empty;
         set => PubDate = value?.FromRFC822Date();
     }
 
@@ -118,26 +118,8 @@ public abstract record RssChannelBase
     [XmlIgnore]
     public CultureInfo? Language
     {
-        set
-        {
-            if (value == null)
-            {
-                InternalLanguage = string.Empty;
-            }
-            else
-            {
-                InternalLanguage = value.Name;
-            }
-        }
-        get
-        {
-            if (string.IsNullOrWhiteSpace(InternalLanguage))
-            {
-                return null;
-            }
-
-            return new CultureInfo(InternalLanguage);
-        }
+        set => InternalLanguage = value == null ? string.Empty : value.Name;
+        get => string.IsNullOrWhiteSpace(InternalLanguage) ? null : new CultureInfo(InternalLanguage);
     }
 
     /// <summary>
