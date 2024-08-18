@@ -42,7 +42,10 @@ public record RssImage
     [XmlElement("height")]
     public int Height
     {
-        get { return _height; }
+        get 
+        {
+            return _height;
+        }
         set
         {
             if (_height > 400)
