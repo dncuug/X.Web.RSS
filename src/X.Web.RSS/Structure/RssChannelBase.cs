@@ -13,6 +13,7 @@ namespace X.Web.RSS.Structure;
 public abstract record RssChannelBase
 {
     private int _ttl;
+    private string? _language;
 
     public RssChannelBase()
     {
@@ -87,8 +88,26 @@ public abstract record RssChannelBase
     [XmlElement("image")]
     public RssImage Image { get; set; }
 
+    /// <summary>
+    /// Gets or sets OPTIONAL the language the channel is written in. This allows aggregators to group all 
+    /// Italian language sites, for example, on a single page. A list of allowable 
+    /// values for this element, as provided by Netscape, is 
+    /// http://www.rssboard.org/rss-language-codes. You may also use values defined 
+    /// by the W3C http://www.w3.org/TR/REC-html40/struct/dirlang.html#langcodes.
+    /// </summary>
+    /// <example>
+    /// en-us
+    /// </example>
     [XmlElement("language")]
-    public string InternalLanguage { get; set; }
+    public string? Language
+    {
+        get { return _language; }
+        set
+        {
+            new LanguageValidator().Validate(value);
+            _language = value;
+        }
+    }
 
     [XmlElement("lastBuildDate")]
     public string InternalLastBuildDate
@@ -102,23 +121,6 @@ public abstract record RssChannelBase
     {
         get => PubDate?.ToRFC822Date() ?? string.Empty;
         set => PubDate = value?.FromRFC822Date();
-    }
-
-    /// <summary>
-    ///   Gets or sets OPTIONAL the language the channel is written in. This allows aggregators to group all 
-    ///   Italian language sites, for example, on a single page. A list of allowable 
-    ///   values for this element, as provided by Netscape, is 
-    ///   http://www.rssboard.org/rss-language-codes. You may also use values defined 
-    ///   by the W3C http://www.w3.org/TR/REC-html40/struct/dirlang.html#langcodes.
-    /// </summary>
-    /// <example>
-    ///   en-us
-    /// </example>
-    [XmlIgnore]
-    public CultureInfo? Language
-    {
-        set => InternalLanguage = value == null ? string.Empty : value.Name;
-        get => string.IsNullOrWhiteSpace(InternalLanguage) ? null : new CultureInfo(InternalLanguage);
     }
 
     /// <summary>
@@ -209,7 +211,7 @@ public abstract record RssChannelBase
         set
         {
             new TTLValidator().Validate(value);
-            
+
             _ttl = value;
         }
     }

@@ -13,7 +13,7 @@ namespace X.Web.RSS.Structure;
 [PublicAPI]
 public record RssSource
 {
-    private string _internalUrl;
+    private string _url;
 
     public RssSource()
     {
@@ -23,12 +23,12 @@ public record RssSource
     [XmlAttribute("url")]
     public string Url
     {
-        get => _internalUrl;
+        get => _url;
         set
         {
             new UriValidator().Validate(value);
             
-            _internalUrl = value;
+            _url = value;
         }
     }
 }
