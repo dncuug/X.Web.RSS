@@ -14,6 +14,22 @@ namespace X.Web.RSS.Tests;
 public class RSSTests
 {
     [Fact]
+    public void TestSerialization()
+    {
+        var originalXml = GetFullRssText();
+        var serializer = new RssDocumentSerializer();
+
+        var document = serializer.Deserialize(originalXml);
+        
+        var xml = serializer.Serialize(document!);
+
+        Assert.NotNull(xml);
+        Assert.NotNull(document);
+        
+        Assert.Single(document.Channel.Items);
+    }
+    
+    [Fact]
     public void WriteRead_LargeObject_Ok()
     {        
         var rss = GetFullRss();
