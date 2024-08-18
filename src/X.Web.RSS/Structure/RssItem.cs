@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Xml.Serialization;
 using X.Web.RSS.Extensions;
-using X.Web.RSS.Structure.Validators;
 
 namespace X.Web.RSS.Structure;
 

@@ -2,7 +2,7 @@
 using System.Xml.Serialization;
 using X.Web.RSS.Exceptions;
 
-namespace X.Web.RSS.Structure.Validators;
+namespace X.Web.RSS.Structure;
 
 public class RssUrl
 {

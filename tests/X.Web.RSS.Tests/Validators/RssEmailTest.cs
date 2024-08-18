@@ -1,4 +1,4 @@
-using X.Web.RSS.Structure.Validators;
+using X.Web.RSS.Structure;
 using Xunit;
 
 namespace X.Web.RSS.Tests.Validators;

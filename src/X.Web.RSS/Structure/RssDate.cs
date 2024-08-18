@@ -3,12 +3,12 @@ using System.Globalization;
 using System.Xml.Serialization;
 using X.Web.RSS.Exceptions;
 
-namespace X.Web.RSS.Structure.Validators;
+namespace X.Web.RSS.Structure;
 
 public class RssDate
 {
     private DateTime? _date;
-        
+
     public RssDate()
     {
     }
@@ -27,14 +27,11 @@ public class RssDate
     [XmlText]
     public string DateString
     {
-        get
-        {
-            return _date.HasValue ? _date.Value.ToString() : String.Empty;
-        }
+        get { return _date.HasValue ? _date.Value.ToString() : String.Empty; }
         set
         {
             DateTime? parseDate = null;
-            
+
             if (!String.IsNullOrEmpty(value))
             {
                 try
@@ -52,18 +49,22 @@ public class RssDate
     }
 
     [XmlText]
-    public string DateStringISO8601 =>
-        Date.HasValue
-            ? Date.Value.ToString("yyyy-MM-ddTHH:mm:ss.Z", CultureInfo.InvariantCulture)
-            : DateString;
+    public string DateStringISO8601
+    {
+        get
+        {
+            var result = Date.HasValue
+                ? Date.Value.ToString("yyyy-MM-ddTHH:mm:ss.Z", CultureInfo.InvariantCulture)
+                : DateString;
+            
+            return result;
+        }
+    }
 
     [XmlIgnore]
     public DateTime? Date
     {
-        get
-        {
-            return _date;
-        }
+        get { return _date; }
         set
         {
             if (value != null)

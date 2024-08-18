@@ -1,6 +1,6 @@
 using System.Xml.Serialization;
 
-namespace X.Web.RSS.Structure.Validators;
+namespace X.Web.RSS.Structure;
 
 public class RssEmail
 {

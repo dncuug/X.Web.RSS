@@ -3,7 +3,7 @@ using System;
 using System.Globalization;
 using X.Web.RSS.Exceptions;
 using X.Web.RSS.Extensions;
-using X.Web.RSS.Structure.Validators;
+using X.Web.RSS.Structure;
 
 namespace X.Web.RSS.Tests.Validators;
 

@@ -1,7 +1,7 @@
 using System;
 using System.Globalization;
 using X.Web.RSS.Exceptions;
-using X.Web.RSS.Structure.Validators;
+using X.Web.RSS.Structure;
 using Xunit;
 
 namespace X.Web.RSS.Tests.Validators;

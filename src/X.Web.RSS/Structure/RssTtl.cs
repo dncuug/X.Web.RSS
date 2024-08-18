@@ -2,15 +2,13 @@ using System;
 using System.Xml.Serialization;
 using X.Web.RSS.Exceptions;
 
-namespace X.Web.RSS.Structure.Validators;
+namespace X.Web.RSS.Structure;
 
 public class RssTtl
 {
-
     private int _ttl;
 
     private string _ttlString;
-
 
     public RssTtl()
     {
@@ -30,10 +28,7 @@ public class RssTtl
     [XmlIgnore]
     public int TTL
     {
-        get
-        {
-            return _ttl;
-        }
+        get { return _ttl; }
         set
         {
             if (value < 0)
@@ -57,15 +52,12 @@ public class RssTtl
     [XmlText]
     public string TTLString
     {
-        get
-        {
-            return _ttlString;
-        }
+        get { return _ttlString; }
 
         set
         {
             int parseTtl = 0;
-            
+
             if (value != null)
             {
                 try
