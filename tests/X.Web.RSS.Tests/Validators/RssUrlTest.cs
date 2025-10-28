@@ -98,7 +98,7 @@ public class RssUrlTest
         rssUrl.Url = null;
 
         // Assert
-        Assert.Equal(null, rssUrl.Url);
+        Assert.Null(rssUrl.Url);
     }
 
     [Fact]
@@ -111,7 +111,7 @@ public class RssUrlTest
         rssUrl.Url = null;
 
         // Assert
-        Assert.Equal(null, rssUrl.Url);
+        Assert.Null(rssUrl.Url);
     }
 
     [Fact]
