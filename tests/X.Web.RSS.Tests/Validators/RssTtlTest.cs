@@ -7,7 +7,7 @@ namespace X.Web.RSS.Tests.Validators;
 public class RssTtlTest
 {
     [Fact]
-    public void Ctor_ValidTtlParameter_Ok()
+    public void Constructor_WithValidTtl_SetsValue()
     {
         // Arrange
         const int TTL = 10;
@@ -20,7 +20,7 @@ public class RssTtlTest
     }
 
     [Fact]
-    public void Ctor_TtlLessZero_Error()
+    public void Constructor_WithNegativeTtl_ThrowsArgumentException()
     {
         // Arrange
         const int TTL = -1;
@@ -41,7 +41,7 @@ public class RssTtlTest
     }
 
     [Fact]
-    public void SetTtl_ValidTtlParameter_Ok()
+    public void Setter_WithValidTtl_SetsValue()
     {
         // Arrange
         RssTtl rssTtl = new RssTtl();
@@ -55,7 +55,7 @@ public class RssTtlTest
     }
 
     [Fact]
-    public void SetTtl_TtlLessZero_Error()
+    public void Setter_WithNegativeTtl_ThrowsArgumentException()
     {
         // Arrange
         RssTtl rssTtl = new RssTtl();
@@ -78,7 +78,7 @@ public class RssTtlTest
 
 
     [Fact]
-    public void SetString_StringLessZero_Error()
+    public void Setter_InvalidNegative_ThrowsArgumentException()
     {
         // Arrange
         RssTtl rssTtl = new RssTtl();
@@ -99,7 +99,7 @@ public class RssTtlTest
     }
 
     [Fact]
-    public void SetTtl_ConvertToString_String()
+    public void Setter_WithValidTtl_PreservesValue()
     {
         // Arrange
         RssTtl rssTtl = new RssTtl();
@@ -113,7 +113,7 @@ public class RssTtlTest
     }
 
     [Fact]
-    public void SetString_ConvertToTtl_Ttl()
+    public void Setter_WithValidTtl_AsStringMatches()
     {
         // Arrange
         RssTtl rssTtl = new RssTtl();
@@ -127,7 +127,7 @@ public class RssTtlTest
     }
 
     [Fact]
-    public void SetTtl_Zero_StringNull()
+    public void SettingZero_TtlBecomesNull()
     {
         // Arrange
         RssTtl rssTtl = new RssTtl();
@@ -137,5 +137,26 @@ public class RssTtlTest
 
         // Assert
         Assert.Null(rssTtl.TTL);
+    }
+
+    [Fact]
+    public void SettingTooLarge_TtlThrowsArgumentException()
+    {
+        // Arrange
+        RssTtl rssTtl = new RssTtl();
+
+        // Action
+        ArgumentException e = null;
+        try
+        {
+            rssTtl.TTL = 1000000; // greater than allowed 999999
+        }
+        catch (ArgumentException ex)
+        {
+            e = ex;
+        }
+
+        // Assert
+        Assert.NotNull(e);
     }
 }

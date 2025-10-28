@@ -8,7 +8,7 @@ namespace X.Web.RSS.Tests.Validators;
 public class RssDateTest
 {
     [Fact]
-    public void Ctor_ValidDateParameter_Ok()
+    public void Constructor_WithDate_SetsDate()
     {
         // Arrange
         DateTime date = DateTime.Now.Date;
@@ -21,7 +21,7 @@ public class RssDateTest
     }
 
     [Fact]
-    public void Ctor_DateInFuture_Error()
+    public void Constructor_WithFutureDate_ThrowsArgumentException()
     {
         // Arrange
         DateTime date = DateTime.Now.AddDays(1);
@@ -43,7 +43,7 @@ public class RssDateTest
     }
 
     [Fact]
-    public void SetDate_ValidDateParameter_Ok()
+    public void Setter_WithDate_SetsDate()
     {
         // Arrange
         RssDate rssDate = new RssDate();
@@ -57,7 +57,7 @@ public class RssDateTest
     }
 
     [Fact]
-    public void SetDate_DateInFuture_Error()
+    public void Setter_WithFutureDate_ThrowsArgumentException()
     {
         // Arrange
         RssDate rssDate = new RssDate();
@@ -79,7 +79,7 @@ public class RssDateTest
     }
 
     [Fact]
-    public void Ctor_ValidStringParameter_Ok()
+    public void Constructor_WithDateString_SetsDateString()
     {
         // Arrange
         String date = DateTime.Now.Date.ToString();
@@ -92,7 +92,7 @@ public class RssDateTest
     }
 
     [Fact]
-    public void Ctor_StringInFuture_Error()
+    public void Constructor_WithFutureDateString_ThrowsArgumentException()
     {
         // Arrange
         String date = DateTime.Now.AddDays(1).ToString("R");
@@ -113,7 +113,7 @@ public class RssDateTest
     }
 
     [Fact]
-    public void SetString_ValidStringParameter_Ok()
+    public void Setter_WithDateString_SetsDateString()
     {
         // Arrange
         RssDate rssDate = new RssDate();
@@ -127,7 +127,7 @@ public class RssDateTest
     }
 
     [Fact]
-    public void SetString_StringInFuture_Error()
+    public void Setter_WithFutureDateString_ThrowsArgumentException()
     {
         // Arrange
         RssDate rssDate = new RssDate();
@@ -149,7 +149,7 @@ public class RssDateTest
     }
 
     [Fact]
-    public void SetDate_ConvertToString_String()
+    public void SettingDateString_ParsesToDate()
     {
         DateTime date = DateTime.Now.Date;
 
@@ -161,7 +161,7 @@ public class RssDateTest
     }
 
     [Fact]
-    public void SetString_ConvertToDate_Date()
+    public void SettingDate_FormatsToString()
     {
         // Arrange
         RssDate rssDate = new RssDate();
@@ -175,7 +175,7 @@ public class RssDateTest
     }
 
     [Fact]
-    public void SetString_Null_DateNull()
+    public void SettingNullDateString_ClearsDate()
     {
         // Arrange
         RssDate rssDate = new RssDate();
@@ -188,7 +188,7 @@ public class RssDateTest
     }
 
     [Fact]
-    public void SetDate_Null_StringNull()
+    public void SettingNullDate_ClearsDateString()
     {
         // Arrange
         RssDate rssDate = new RssDate();
@@ -201,7 +201,7 @@ public class RssDateTest
     }
 
     [Fact]
-    public void SetString_InvalidDateFormat_Error()
+    public void SettingInvalidDateString_ThrowsArgumentException()
     {
         // Arrange
         RssDate rssDate = new RssDate();
@@ -223,7 +223,7 @@ public class RssDateTest
     }
 
     [Fact]
-    public void Ctor_InvalidDateFormat_Error()
+    public void Constructor_WithInvalidDateString_ThrowsArgumentException()
     {
         // Arrange
         const string InvalidDate = "adsfsadf";
@@ -244,7 +244,7 @@ public class RssDateTest
     }
 
     [Fact]
-    public void DateExtensionTest()
+    public void DateExtension_ToAndFromRFC822_PreservesDate()
     {
         var date = DateTime.Now;
 
@@ -253,5 +253,16 @@ public class RssDateTest
 
         Assert.Equal(date.ToLongDateString(), parsedDate.ToLongDateString());
         Assert.Equal(date.ToLongTimeString(), parsedDate.ToLongTimeString());
+    }
+
+    [Fact]
+    public void DateStringISO8601_ReturnsIso8601WhenDateSet()
+    {
+        var date = new DateTime(2020, 1, 2, 3, 4, 5);
+        var rssDate = new RssDate(date);
+
+        var iso = rssDate.DateStringISO8601;
+
+        Assert.Contains("2020-01-02T03:04:05", iso);
     }
 }
