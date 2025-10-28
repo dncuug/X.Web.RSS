@@ -78,7 +78,11 @@ public class RSSTests
         {
             Channel = new RssChannel
             {
-                AtomLink = new RssLink("http://atomlink.com") { Rel = Rel.self, Type = "text/plain" },
+                AtomLink = new RssLink("https://atomlink.com")
+                {
+                    Rel = Rel.self,
+                    Type = "text/plain"
+                },
                 Category = "category",
                 Cloud = new RssCloud
                 {
@@ -88,20 +92,20 @@ public class RSSTests
                     Protocol = Protocol.xmlrpc,
                     RegisterProcedure = "registerProcedure"
                 },
-                Copyright = "copyrignt (c)",
+                Copyright = "copyright (c)",
                 Description = "long description",
                 Image = new RssImage
                 {
                     Description = "Image Description",
                     Height = 100,
                     Width = 100,
-                    Link = new RssUrl("http://image.link.url.com"),
+                    Link = new RssUrl("https://image.link.url.com"),
                     Title = "title",
-                    Url = new RssUrl("http://image.url.com")
+                    Url = new RssUrl("https://image.url.com")
                 },
                 Language = "en",
                 LastBuildDate = new DateTime(2011, 7, 17, 15, 55, 41),
-                Link = new RssUrl("http://channel.url.com"),
+                Link = new RssUrl("https://channel.url.com"),
                 ManagingEditor = "Manager (managingEditor@mail.com)",
                 PubDate = new DateTime(2011, 7, 17, 15, 55, 41),
                 Rating = "rating",
@@ -109,8 +113,8 @@ public class RSSTests
                 SkipHours = [new Hour(22), new Hour(15), new Hour(4)],
                 TextInput = new RssTextInput
                 {
-                    Description = "text input desctiption",
-                    Link = new RssUrl("http://text.input.link.com"),
+                    Description = "text input description",
+                    Link = new RssUrl("https://text.input.link.com"),
                     Name = "text input name",
                     Title = "text input title"
                 },
@@ -127,19 +131,23 @@ public class RSSTests
                             Domain = "category domain value",
                             Text = "category text value"
                         },
-                        Comments = new RssUrl("http://rss.item.comment.url.com"),
+                        Comments = new RssUrl("https://rss.item.comment.url.com"),
                         Description = "item description",
                         Enclosure = new RssEnclosure
                         {
                             Length = 1234,
                             Type = "text/plain",
-                            Url = "http://rss.item.enclosure.type.url.com"
+                            Url = "https://rss.item.enclosure.type.url.com"
                         },
-                        Link = new RssUrl("http://rss.item.link.url.com"),
+                        Link = new RssUrl("https://rss.item.link.url.com"),
                         PubDate = new DateTime(2011, 7, 17, 15, 55, 41),
                         Title = "item title",
-                        Guid = new RssGuid { IsPermaLink = false, Value = "guid value" },
-                        Source = new RssSource { Url = "http://rss.item.source.url.com" }
+                        Guid = new RssGuid
+                        {
+                            IsPermaLink = false,
+                            Value = "guid value"
+                        },
+                        Source = new RssSource { Url = "https://rss.item.source.url.com" }
                     }
                 ]
             }
