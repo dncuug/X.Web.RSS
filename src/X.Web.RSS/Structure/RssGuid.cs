@@ -13,6 +13,7 @@ public record RssGuid
     public RssGuid()
     {
         IsPermaLink = true;
+        Value = "";
     }
 
     /// <summary>

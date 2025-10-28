@@ -13,23 +13,23 @@ public record RssTextInput
     ///   Gets or sets explains the text input area.
     /// </summary>
     [XmlElement("description")]
-    public string Description { get; set; }
+    public string Description { get; set; } = "";
 
     /// <summary>
     ///   Gets or sets the URL of the CGI script that processes text input requests.
     /// </summary>
     [XmlElement("link")]
-    public RssUrl Link { get; set; }
+    public RssUrl Link { get; set; } = new();
 
     /// <summary>
     ///   Gets or sets the name of the text object in the text input area.
     /// </summary>
     [XmlElement("name")]
-    public string Name { get; set; }
+    public string Name { get; set; } = "";
 
     /// <summary>
     ///   Gets or sets the label of the Submit button in the text input area.
     /// </summary>
     [XmlElement("title")]
-    public string Title { get; set; }
+    public string Title { get; set; } = "";
 }

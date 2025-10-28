@@ -16,7 +16,7 @@ public record RssImage
     ///   formed around the image in the HTML rendering.
     /// </summary>
     [XmlElement("description")]
-    public string Description { get; set; }
+    public string Description { get; set; } = "";
 
     /// <summary>
     ///   Gets or sets optional elements include 'width', numbers, indicating the width of the image in pixels.
@@ -24,7 +24,7 @@ public record RssImage
     [XmlElement("width")]
     public int Width
     {
-        get { return _width; }
+        get => _width;
         set
         {
             if (_width > 144)
@@ -42,10 +42,7 @@ public record RssImage
     [XmlElement("height")]
     public int Height
     {
-        get 
-        {
-            return _height;
-        }
+        get => _height;
         set
         {
             if (_height > 400)
@@ -62,18 +59,18 @@ public record RssImage
     ///   the image is a link to the site.
     /// </summary>
     [XmlElement("link")]
-    public RssUrl Link { get; set; }
+    public RssUrl Link { get; set; } = new();
 
     /// <summary>
     ///   Gets or sets describes the image, it's used in the ALT attribute of the HTML 'img'
     ///   tag when the channel is rendered in HTML.
     /// </summary>
     [XmlElement("title")]
-    public string Title { get; set; }
+    public string Title { get; set; } = "";
 
     /// <summary>
     ///   Gets or sets is the URL of a GIF, JPEG or PNG image that represents the channel.
     /// </summary>
     [XmlElement("url")]
-    public RssUrl Url { get; set; }
+    public RssUrl Url { get; set; } = new();
 }

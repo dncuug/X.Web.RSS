@@ -19,7 +19,7 @@ public record RssCloud
     ///   rpc.sys.com
     /// </example>
     [XmlAttribute("domain")]
-    public string Domain { get; set; }
+    public string Domain { get; set; } = "";
 
     /// <summary>
     ///   Gets or sets the client's remote procedure call path
@@ -28,7 +28,7 @@ public record RssCloud
     ///   /RPC2
     /// </example>
     [XmlAttribute("path")]
-    public string Path { get; set; }
+    public string Path { get; set; } = "";
 
     /// <summary>
     ///   Gets or sets the client's TCP port
@@ -58,5 +58,5 @@ public record RssCloud
     ///   myCloud.rssPleaseNotify
     /// </example>
     [XmlAttribute("registerProcedure")]
-    public string RegisterProcedure { get; set; }
+    public string RegisterProcedure { get; set; } = "";
 }

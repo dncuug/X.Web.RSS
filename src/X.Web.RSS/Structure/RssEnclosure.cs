@@ -14,6 +14,7 @@ public record RssEnclosure
     public RssEnclosure()
     {
         _uriValidator = new UriValidator();
+        _url = "";
     }
 
     /// <summary>
@@ -32,7 +33,7 @@ public record RssEnclosure
     /// audio/mpeg
     /// </example>
     [XmlAttribute("type")]
-    public string Type { get; set; }
+    public string Type { get; set; } = "";
 
     /// <summary>
     /// Gets or sets url says where the enclosure is located

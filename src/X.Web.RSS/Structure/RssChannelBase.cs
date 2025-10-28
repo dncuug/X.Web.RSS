@@ -19,8 +19,25 @@ public abstract record RssChannelBase
     {
         Docs = "http://www.rssboard.org/rss-specification";
         Generator = "X.Web.RSS Generator";
-        SkipDays = new List<Day>();
-        SkipHours = new List<Hour>();
+        SkipDays = [];
+        SkipHours = [];
+        AtomLink = new RssLink
+        {
+            Rel = Rel.self,
+            Type = "application/rss+xml"
+        };
+        Category = "";
+        Cloud = new RssCloud();
+        Copyright ="";
+        Description = "";
+        Image = new RssImage();
+        Link = new RssUrl();
+        ManagingEditor = "";
+        Rating = "";
+        TextInput = new RssTextInput();
+        Title = "";
+        WebMaster = "";
+        TTL = 60;
     }
 
     /// <summary>
