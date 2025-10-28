@@ -136,6 +136,6 @@ public class RssTtlTest
         rssTtl.TTL = 0;
 
         // Assert
-        Assert.Equal(null, rssTtl.TTL);
+        Assert.Null(rssTtl.TTL);
     }
 }

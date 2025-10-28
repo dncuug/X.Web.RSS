@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using X.Web.RSS.Enumerators;
@@ -62,11 +63,8 @@ public class RSSTests
     {
         var serializer = new RssDocumentSerializer();
 
-        var request = WebRequest.Create("https://feeds.bbci.co.uk/news/world/rss.xml");
-        var response = await request.GetResponseAsync();
-        var stream = response.GetResponseStream();
-        var streamReader = new StreamReader(stream);
-        var xml = await streamReader.ReadToEndAsync();
+        using var http = new HttpClient();
+        var xml = await http.GetStringAsync("https://feeds.bbci.co.uk/news/world/rss.xml");
 
         var rss = serializer.Deserialize(xml);
 

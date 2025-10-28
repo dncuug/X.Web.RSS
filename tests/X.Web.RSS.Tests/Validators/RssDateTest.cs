@@ -184,7 +184,7 @@ public class RssDateTest
         rssDate.DateString = null;
 
         // Assert
-        Assert.Equal(null, rssDate.Date);
+        Assert.Null(rssDate.Date);
     }
 
     [Fact]
