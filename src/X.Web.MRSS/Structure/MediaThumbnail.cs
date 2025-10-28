@@ -23,5 +23,5 @@ public record MediaThumbnail
     /// <summary>
     /// Format "H:M:S.h" or "S.h"
     /// </summary>
-    public string Time { get; set; }
+    public string Time { get; set; } = "";
 }
