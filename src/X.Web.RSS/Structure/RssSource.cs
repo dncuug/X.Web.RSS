@@ -17,7 +17,7 @@ public record RssSource
 
     public RssSource()
     {
-        Url = "";
+        _url = "";
     }
 
     [XmlAttribute("url")]
@@ -27,7 +27,7 @@ public record RssSource
         set
         {
             new UriValidator().Validate(value);
-            
+
             _url = value;
         }
     }

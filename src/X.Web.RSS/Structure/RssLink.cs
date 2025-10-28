@@ -20,6 +20,7 @@ public record RssLink
 
         Type = "application/rss+xml";
         Rel = Rel.self;
+        _href = "";
     }
 
     public RssLink(string url)

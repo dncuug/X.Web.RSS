@@ -20,19 +20,19 @@ public record RssItem
     ///   Gets or sets email address of the author of the item.
     /// </summary>
     [XmlElement("author")]
-    public string Author { get; set; }
+    public string Author { get; set; } = "";
 
     /// <summary>
     ///   Gets or sets includes the item in one or more categories.
     /// </summary>
     [XmlElement("category")]
-    public RssCategory Category { get; set; }
+    public RssCategory Category { get; set; } = new();
 
     /// <summary>
     ///   Gets or sets URL of a page for comments relating to the item.
     /// </summary>
     [XmlElement("comments")]
-    public RssUrl Comments { get; set; }
+    public RssUrl Comments { get; set; } = new();
 
     /// <summary>
     ///   Gets or sets the item synopsis.
@@ -43,19 +43,19 @@ public record RssItem
     ///   del Cinema was being staged.
     /// </example>
     [XmlElement("description")]
-    public string Description { get; set; }
+    public string Description { get; set; } = "";
 
     /// <summary>
     ///   Gets or sets describes a media object that is attached to the item.
     /// </summary>
     [XmlElement("enclosure")]
-    public RssEnclosure Enclosure { get; set; }
+    public RssEnclosure Enclosure { get; set; } = new();
 
     /// <summary>
     ///   Gets or sets a string that uniquely identifies the item.
     /// </summary>
     [XmlElement("guid")]
-    public RssGuid Guid { get; set; }
+    public RssGuid Guid { get; set; } = new();
 
     /// <summary>
     ///   Gets or sets the URL of the item.
@@ -64,7 +64,7 @@ public record RssItem
     ///   http://nytimes.com/2004/12/07FEST.html
     /// </example>
     [XmlElement("link")]
-    public RssUrl Link { get; set; }
+    public RssUrl Link { get; set; } = new();
 
     /// <summary>
     ///   Gets or sets indicates when the item was published.
@@ -76,7 +76,7 @@ public record RssItem
     ///   Gets or sets the RSS channel that the item came from
     /// </summary>
     [XmlElement("source")]
-    public RssSource Source { get; set; }
+    public RssSource Source { get; set; } = new();
 
     /// <summary>
     ///   Gets or sets the title of the item.
@@ -85,7 +85,7 @@ public record RssItem
     ///   Venice Film Festival Tries to Quit Sinking
     /// </example>
     [XmlElement("title")]
-    public string Title { get; set; }
+    public string Title { get; set; } = "";
 
     [XmlElement("pubDate")]
     public string InternalPubDate
