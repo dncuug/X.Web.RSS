@@ -16,7 +16,7 @@
         <PackageVersion>3.0.0-pre</PackageVersion>
 
         <RepositoryType>git</RepositoryType>
-        <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
+        <RepositoryUrl>https://github.com/dncuug/X.Web.RSS.git</RepositoryUrl>
         <PackageProjectUrl>https://andrew.gubskiy.com/open-source</PackageProjectUrl>        
     </PropertyGroup>
 
