@@ -19,5 +19,5 @@ public record MediaRssDocument : IRssDocument<MediaRssChannel>
     [XmlElement("channel")]
     public MediaRssChannel Channel { get; set; }
 
-    public string Version { get; set; }
+    public string Version { get; set; } = "2.0";
 }
