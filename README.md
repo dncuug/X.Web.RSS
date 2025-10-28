@@ -17,97 +17,105 @@ This version contain some important breaking changes:
 * `RssDocument` and all other entities converted from `class` to `record`. 
 
 ## Usage example
-To read foreign rss feed you need to get stream with rss data and call `RssDocument.Load`
-```csharp
+To read a foreign RSS feed you need to get a stream with RSS data and deserialize it using `RssDocumentSerializer`.
 
-    var request = WebRequest.Create("http://example.org/rss/");
-    var response = request.GetResponse();
-    var stream = response.GetResponseStream();
-    Rss rss = RssDocument.Load(stream);
-    
-    Assert.AreEqual("Example", rss.Channel.Title);
+```csharp
+using System.IO;
+using System.Text;
+
+// read RSS XML from a stream and deserialize
+using var reader = new StreamReader(stream, Encoding.UTF8);
+var xml = reader.ReadToEnd();
+var serializer = new RssDocumentSerializer();
+RssDocument? rss = serializer.Deserialize(xml);
+
+Assert.AreEqual("Example", rss?.Channel.Title);
+```
+
+To serialize a `RssDocument` back to XML:
+
+```csharp
+var serializer = new RssDocumentSerializer();
+string xml = serializer.Serialize(rssDocument);
 ```
 
 ### RSS object creating example
 
-Complete rss object will look like this:
-```csharp
+Complete RSS object will look like this (updated to match current types and constructors):
 
-    return new RssDocument
+```csharp
+using System.Collections.Generic;
+using System.Globalization;
+
+return new RssDocument
+{
+    Channel = new RssChannel
+    {
+        // RssLink has a constructor that accepts a string URL
+        AtomLink = new RssLink("http://atomlink.com") { Rel = Rel.self, Type = "text/plain" },
+        Category = "category",
+        Cloud = new RssCloud
+        {
+            Domain = "domain",
+            Path = "path",
+            Port = 1234,
+            Protocol = Protocol.xmlrpc,
+            RegisterProcedure = "registerProcedure"
+        },
+        Copyright = "copyrignt (c)",
+        Description = "long description",
+        Image = new RssImage
+        {
+            Description = "Image Description",
+            Height = 100,
+            Width = 100,
+            Link = new RssUrl("http://image.link.url.com"),
+            Title = "title",
+            Url = new RssUrl("http://image.url.com")
+        },
+        Language = new CultureInfo("en").Name,
+        LastBuildDate = new DateTime(2011, 7, 17, 15, 55, 41),
+        Link = new RssUrl("http://channel.url.com"),
+        ManagingEditor = "managingEditor@mail.com (manager)",
+        PubDate = new DateTime(2011, 7, 17, 15, 55, 41),
+        Rating = "rating",
+        SkipDays = new List<Day> { Day.Thursday, Day.Wednesday },
+        SkipHours = new List<Hour> { new Hour(22), new Hour(15), new Hour(4) },
+        TextInput = new RssTextInput
+        {
+            Description = "text input desctiption",
+            Link = new RssUrl("http://text.input.link.com"),
+            Name = "text input name",
+            Title = "text input title"
+        },
+        Title = "channel title",
+        TTL = 10,
+        WebMaster = "webmaster@mail.example.com (webmaster)",
+        Items = new List<RssItem>
+        {
+            new RssItem
             {
-                Channel =
-                    new RssChannel
-                    {
-                        AtomLink = new RssLink { Href = new RssUrl("http://atomlink.com"), Rel = Rel.self, Type = "text/plain" },
-                        Category = "category",
-                        Cloud =
-                            new RssCloud
-                            {
-                                Domain = "domain",
-                                Path = "path",
-                                Port = 1234,
-                                Protocol = Protocol.xmlrpc,
-                                RegisterProcedure = "registerProcedure"
-                            },
-                        Copyright = "copyrignt (c)",
-                        Description = "long description",
-                        Image =
-                            new RssImage
-                            {
-                                Description = "Image Description",
-                                Height = 100,
-                                Width = 100,
-                                Link = new RssUrl("http://image.link.url.com"),
-                                Title = "title",
-                                Url = new RssUrl("http://image.url.com")
-                            },
-                        Language = new CultureInfo("en"),
-                        LastBuildDate = new DateTime(2011, 7, 17, 15, 55, 41),
-                        Link = new RssUrl("http://channel.url.com"),
-                        ManagingEditor = new RssEmail("managingEditor@mail.com (manager)"),
-                        PubDate = new DateTime(2011, 7, 17, 15, 55, 41),
-                        Rating = "rating",
-                        SkipDays = new List<Day> { Day.Thursday, Day.Wednesday },
-                        SkipHours = new List<Hour> { new Hour(22), new Hour(15), new Hour(4) },
-                        TextInput =
-                            new RssTextInput
-                            {
-                                Description = "text input desctiption",
-                                Link = new RssUrl("http://text.input.link.com"),
-                                Name = "text input name",
-                                Title = "text input title"
-                            },
-                        Title = "channel title",
-                        TTL = 10,
-                        WebMaster = new RssEmail("webmaster@mail.example.com (webmaster)"),
-                        Items =
-                            new List<RssItem>
-                                        {
-                                            new RssItem
-                                                {
-                                                    Author = new RssEmail("item.author@mail.example.com (author)"),
-                                                    Category =
-                                                        new RssCategory
-                                                            {
-                                                                Domain = "category domain value", 
-                                                                Text = "category text value"
-                                                            },
-                                                    Comments = new RssUrl("http://rss.item.comment.url.com"),
-                                                    Description = "item description",
-                                                    Enclosure =
-                                                        new RssEnclosure
-                                                            {
-                                                                Length = 1234,
-                                                                Type = "text/plain",
-                                                                Url = new RssUrl("http://rss.item.enclosure.type.url.com")
-                                                            },
-                                                    Link = new RssUrl("http://rss.item.link.url.com"),
-                                                    PubDate = new DateTime(2011, 7, 17, 15, 55, 41),
-                                                    Title = "item title",
-                                                    Guid = new RssGuid { IsPermaLink = false, Value = "guid value" },
-                                                    Source = new RssSource { Url = new RssUrl("http://rss.item.source.url.com") }
-                                                }
-                                        }
-                    }
-            };
+                Author = "item.author@mail.example.com (author)",
+                Category = new RssCategory
+                {
+                    Domain = "category domain value",
+                    Text = "category text value"
+                },
+                Comments = new RssUrl("http://rss.item.comment.url.com"),
+                Description = "item description",
+                Enclosure = new RssEnclosure
+                {
+                    Length = 1234,
+                    Type = "text/plain",
+                    Url = new RssUrl("http://rss.item.enclosure.type.url.com")
+                },
+                Link = new RssUrl("http://rss.item.link.url.com"),
+                PubDate = new DateTime(2011, 7, 17, 15, 55, 41),
+                Title = "item title",
+                Guid = new RssGuid { IsPermaLink = false, Value = "guid value" },
+                Source = new RssSource { Url = new RssUrl("http://rss.item.source.url.com") }
+            }
+        }
+    }
+};
 ```
