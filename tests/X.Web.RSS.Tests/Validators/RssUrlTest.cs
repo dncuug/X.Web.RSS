@@ -7,7 +7,7 @@ namespace X.Web.RSS.Tests.Validators;
 public class RssUrlTest
 {
     [Fact]
-    public void Ctor_ValidUriParameter_Ok()
+    public void Constructor_WithUri_SetsUrlString()
     {
         // Arrange
         var uri = new Uri("http://test.url.com");
@@ -20,7 +20,7 @@ public class RssUrlTest
     }
 
     [Fact]
-    public void SetUri_ValidUriParameter_Ok()
+    public void Setter_WithString_SetsUrlString()
     {
         // Arrange
         RssUrl rssUrl = new RssUrl();
@@ -34,7 +34,7 @@ public class RssUrlTest
     }
 
     [Fact]
-    public void Ctor_ValidStringParameter_Ok()
+    public void Constructor_WithString_SetsUrl()
     {
         // Arrange
         String uri = new Uri("http://test.url.com").ToString();
@@ -47,7 +47,7 @@ public class RssUrlTest
     }
 
     [Fact]
-    public void SetString_ValidStringParameter_Ok()
+    public void Setter_WithStringProperty_SetsUrl()
     {
         // Arrange
         var rssUrl = new RssUrl();
@@ -61,7 +61,7 @@ public class RssUrlTest
     }
 
     [Fact]
-    public void SetUri_ConvertToString_String()
+    public void SettingWithAbsoluteUriString_PreservesNormalizedString()
     {
         // Arrange
         RssUrl rssUrl = new RssUrl();
@@ -75,7 +75,7 @@ public class RssUrlTest
     }
 
     [Fact]
-    public void SetString_ConvertToUri_Uri()
+    public void SettingWithToStringUriString_PreservesAbsoluteUri()
     {
         // Arrange
         RssUrl rssUrl = new RssUrl();
@@ -89,7 +89,7 @@ public class RssUrlTest
     }
 
     [Fact]
-    public void SetString_Null_UriNull()
+    public void SettingNullUrl_AllowsNull()
     {
         // Arrange
         RssUrl rssUrl = new RssUrl();
@@ -102,7 +102,7 @@ public class RssUrlTest
     }
 
     [Fact]
-    public void SetUri_Null_StringNull()
+    public void SettingNullUrl_OnNewRssUrl_AllowsNull()
     {
         // Arrange
         RssUrl rssUrl = new RssUrl();
@@ -115,7 +115,7 @@ public class RssUrlTest
     }
 
     [Fact]
-    public void SetString_InvalidUriFormat_Error()
+    public void SettingInvalidString_ThrowsUriFormatException()
     {
         // Arrange
         RssUrl rssUrl = new RssUrl();
@@ -137,7 +137,7 @@ public class RssUrlTest
     }
 
     [Fact]
-    public void Ctor_InvalidUriFormat_Error()
+    public void Constructor_WithInvalidString_ThrowsUriFormatException()
     {
         // Arrange
         const string InvalidUri = "adsfsadf";
